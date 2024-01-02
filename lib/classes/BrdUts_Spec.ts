@@ -1,6 +1,7 @@
 /** ---------------------------------------------------------------------------
- * @module [Brd/Uts]
- * @author APG
+ * @module [BrdUts]
+ * @author [APG] Angeli Paolo Giusto
+ * @version 0.1 APG 20220909 Alpha version
  * @version 0.2 APG 20230418
  * ----------------------------------------------------------------------------
  */
@@ -9,10 +10,12 @@
 /**
  * Bare minimal testing tool
  */
-export class BrdUtsSpec {
+export class BrdUts_Spec {
 
     static passed = 0;
     static failed = 0;
+
+
 
     /**
      * Initialize counters
@@ -25,11 +28,14 @@ export class BrdUtsSpec {
     }
 
 
+
     /**
      * Prompt a cosmetic header title for a series of tests
      * @param atitle to show in the header
      */
-    static Title(atitle: string) {
+    static Title(
+        atitle: string
+    ) {
 
         console.log(`=================================================================`)
         console.log(atitle);
@@ -49,12 +55,16 @@ export class BrdUtsSpec {
     }
 
 
+
     /**
      * Asserts a check on an expected true value. Increments the counters accordingly.
      * @param afeature under testing (method, function, algorithm ecc.)
      * @param atrueValue to check
      */
-    static AssertTrue(afeature: string, atrueValue: boolean) {
+    static AssertTrue(
+        afeature: string,
+        atrueValue: boolean
+    ) {
 
 
         if (atrueValue) {
@@ -74,12 +84,16 @@ export class BrdUtsSpec {
     }
 
 
+
     /**
      * Asserts a check on an expected false value. Increments the counters accordingly.
      * @param afeature under testing (method, function, algorithm ecc.)
      * @param afalseValue to check
      */
-    static AssertFalse(amessage: string, afalseValue: boolean) {
+    static AssertFalse(
+        amessage: string,
+        afalseValue: boolean
+    ) {
 
         if (!afalseValue) {
             this.passed++;
@@ -97,6 +111,8 @@ export class BrdUtsSpec {
 
     }
 
+
+
     /**
      * Asserts a check on a primitive-type value. Increments the counters accordingly.
      * @param afeature under testing (method, function, algorithm ecc.)
@@ -111,8 +127,8 @@ export class BrdUtsSpec {
 
         let r = false;
 
-        if(typeof aprimitiveValue == typeof aexpectedValue){
-            if(aprimitiveValue === aexpectedValue){
+        if (typeof aprimitiveValue == typeof aexpectedValue) {
+            if (aprimitiveValue === aexpectedValue) {
                 r = true
             }
         }
@@ -129,9 +145,19 @@ export class BrdUtsSpec {
 
         console.log("  For the test " + amessage);
 
-        console.log('    We expect ' + aexpectedValue+ ' and we got ' + aprimitiveValue + ' => %c' + result, 'color:' + color);
+        console.log('    We expect ' + aexpectedValue + ' and we got ' + aprimitiveValue + ' => %c' + result, 'color:' + color);
 
     }
 
 
 }
+
+/*! ---------------------------------------------------------------------------
+ * @copyright Breda Sistemi industriali S.p.A., 2023 - http://bredasys.com
+ * All rights reserved 
+ * @licence You cannot host, display, distribute or share this Work in any 
+ * form, both physical and digital. You cannot use this Work in any commercial
+ * or non-commercial product, website or project. You cannot sell this Work
+ * and you cannot mint an NFTs out of it.
+ * --------------------------------------------------------------------------- 
+ */

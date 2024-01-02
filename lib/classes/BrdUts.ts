@@ -1,6 +1,6 @@
 /** ---------------------------------------------------------------------------
- * @module [Brd/Uts]
- * @author APG
+ * @module [BrdUts]
+ * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20220909 Alpha version
  * @version 0.2 APG 20230418 Extraction to its own module
  * ----------------------------------------------------------------------------
@@ -152,9 +152,18 @@ export class BrdUts {
         return r;
     }
 
-    static Assert(amessage: string) {
-        console.log("ASSERT!:" + amessage);
-        throw new Error(amessage);
+
+
+    static Assert(
+        acondition: boolean,
+        amessage: string
+    ) {
+        const message = "ASSERTION! " + amessage
+        if (!acondition) {
+            alert(message);
+            console.log(message);
+            throw new Error(message);
+        }
     }
 
 
@@ -167,3 +176,13 @@ export class BrdUts {
         return String(anum).padStart(aplaces, '0')
     }
 }
+
+/*! ---------------------------------------------------------------------------
+ * @copyright Breda Sistemi industriali S.p.A., 2023 - http://bredasys.com
+ * All rights reserved 
+ * @licence You cannot host, display, distribute or share this Work in any 
+ * form, both physical and digital. You cannot use this Work in any commercial
+ * or non-commercial product, website or project. You cannot sell this Work
+ * and you cannot mint an NFTs out of it.
+ * --------------------------------------------------------------------------- 
+ */

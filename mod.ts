@@ -1,8 +1,9 @@
 /** ---------------------------------------------------------------------------
- * @module [Brd/Uts]
+ * @module [BrdUts]  Breda Deno Typescript utilities
  * @author APG
  * @version 0.1 APG 20220909 Alpha version
  * @version 0.2 APG 20230418 Extraction to its own module
+ * @version 0.3 APG 20231229 Aggiunto l'oggetto logger
  * ----------------------------------------------------------------------------
  */
 

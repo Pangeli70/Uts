@@ -1,21 +1,25 @@
 /** ---------------------------------------------------------------------------
- * @module [Brd/Uts]
- * @author APG
+ * @module [BrdUts]
+ * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20220909 Alpha version
  * @version 0.2 APG 20230418 Extraction to its own module
  * ----------------------------------------------------------------------------
  */
 
-import { Fs, Path } from "../imports/deno.land.std.ts";
-import { BrdUts } from "./BrdUts.ts";
+import {
+    Fs, Path
+} from "../imports/deno.land.std.ts";
+import {
+    BrdUts
+} from "./BrdUts.ts";
 
 
 /**
  * Text file utilities
  */
-export class BrdUtsFile {
+export class BrdUts_File {
 
-    static CLASS_NAME = "BrdUtsFile";
+    static CLASS_NAME = "BrdUts_File";
 
     /**
      * Used to ensure that the file path exist in order to prevent the raising 
@@ -109,7 +113,7 @@ export class BrdUtsFile {
                             break
                         }
                     }
-                    if(!empty){
+                    if (!empty) {
                         table.push(fields);
                     }
 
@@ -119,9 +123,12 @@ export class BrdUtsFile {
 
         const fieldNames = table[0];
         const fieldTypes = table[1];
-        if (fieldTypes.length != fieldNames.length) {
-            BrdUts.Assert(` ${this.CLASS_NAME} / Error! The number of types (${fieldTypes.length}) is not equal to the expected number of columns (${fieldNames.length})`);
-        }
+
+        BrdUts.Assert(
+            fieldTypes.length == fieldNames.length,
+            ` ${this.CLASS_NAME} / Error! The number of types (${fieldTypes.length}) is not equal to the expected number of columns (${fieldNames.length})`
+        );
+
 
         if (
             atranscodification != null &&
@@ -136,15 +143,20 @@ export class BrdUtsFile {
                     fieldNames[i] = property;
                 }
                 else {
-                    BrdUts.Assert(`${this.CLASS_NAME} / Errore nella transcodifica del campo ${name} del file ${afile}: non esiste una voce equivalente nell'oggetto ${JSON.stringify(atranscodification)}`)
+                    BrdUts.Assert(
+                        property != undefined,
+                        `${this.CLASS_NAME} / Errore nella transcodifica del campo ${name} del file ${afile}: non esiste una voce equivalente nell'oggetto ${JSON.stringify(atranscodification)}`
+                    )
                 }
             }
         }
 
         for (let i = 2; i < table.length; i++) {
-            if (table[i].length != fieldNames.length) {
-                BrdUts.Assert(` ${this.CLASS_NAME} / Error! In row ${i} (${table[i][0]}), the number of cells (${table[i].length}) is not equal to the expected (${fieldNames.length})`);
-            }
+
+            BrdUts.Assert(
+                table[i].length == fieldNames.length,
+                ` ${this.CLASS_NAME} / Error! In row ${i} (${table[i][0]}), the number of cells (${table[i].length}) is not equal to the expected (${fieldNames.length})`
+            );
 
             const anyObject: any = {};
             for (let j = 0; j < fieldNames.length; j++) {
@@ -183,7 +195,10 @@ export class BrdUtsFile {
                         break;
                     }
                     default:
-                        BrdUts.Assert(`${this.CLASS_NAME} / Errore il tipo di campo ${fieldTypes[j]} del file ${afile} non è valido : i tipi riconosciuti sono "string", "number", "integer" e "boolean"`)
+                        BrdUts.Assert(
+                            false,
+                            `${this.CLASS_NAME} / Errore il tipo di campo ${fieldTypes[j]} del file ${afile} non è valido : i tipi riconosciuti sono "string", "number", "integer" e "boolean"`
+                        )
                 }
                 anyObject[fieldNames[j]] = v;
             }
@@ -219,3 +234,13 @@ export class BrdUtsFile {
 
 
 }
+
+/*! ---------------------------------------------------------------------------
+ * @copyright Breda Sistemi industriali S.p.A., 2023 - http://bredasys.com
+ * All rights reserved 
+ * @licence You cannot host, display, distribute or share this Work in any 
+ * form, both physical and digital. You cannot use this Work in any commercial
+ * or non-commercial product, website or project. You cannot sell this Work
+ * and you cannot mint an NFTs out of it.
+ * --------------------------------------------------------------------------- 
+ */
