@@ -1,12 +1,9 @@
 /** ---------------------------------------------------------------------------
- * @module [BrdUts] For Deno
+ * @module [BrdUts] For the browser
  * ----------------------------------------------------------------------------
  */
 
-export * as Std from "./imports/deno.land.std.ts";
-
 export * from "./classes/BrdUts.ts";
-export * from "./classes/BrdUts_File.ts";
 export * from "./classes/BrdUts_Logger.ts";
 export * from "./classes/BrdUts_Spec.ts";
 
