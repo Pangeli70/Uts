@@ -10,19 +10,32 @@ import { BrdUts_TSignature } from "../types/BrdUts_Types.ts";
 /**
  * Result with error handling to avoid exceptions handling
  */
-export interface BrdUts_IResult {
+export class BrdUts_Result {
+
+    /** Module where the result was created */
+    module: string;
 
     /** Status of the result */
     ok: boolean;
 
     /** Error message if status is false */
-    error?: string;
+    message?: string;
 
     /** Value fr the object carried by the result */
     payload?: unknown;
 
     /** Signature of the payload's type for quick raw type verification*/
     signature?: BrdUts_TSignature;
+
+
+
+    constructor(amodule: string, asignature?: BrdUts_TSignature) { 
+        this.ok = true;
+        this.module = amodule;
+        if (asignature) { 
+            this.signature = asignature;
+        }
+    }
 
 }
 

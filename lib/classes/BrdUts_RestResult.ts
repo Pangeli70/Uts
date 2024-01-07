@@ -9,25 +9,66 @@
 /**
  * Risultato della chiamata ad un servizio REST Breda
  */
-export interface BrdUts_IRestResult {
-    
+export class BrdUts_RestResult {
+
     /**
-     * Stato della risultato della chiamata al microservizio
+     * Nome del microservizio che ha inviato la risposta
      */
-    ok: boolean;
+    service: string;
+
+    /**
+     * Metodo della richiesta
+     */
+    method?: string;
+
+    /**
+     * Url della richiesta 
+     */
+    url?: string;
+
+    /**
+     * Stato della risultato della richiesta al microservizio
+     */
+    ok = true;
 
     /**
      * Messaggio associato alla risposta. Può essere un messaggio di errore o un
-     * messaggio informativo
+     * messaggio informativo.
      */
-    message: string;
+    message: string | string[] = "";
 
     /**
      * Eventuale risultato della elaborazione 
      */
     payload?: unknown;
 
+    /**
+     * Data ora del ricevimento della richiesta 
+     */
+    dateTime: string;
+
+    /**
+     * Momento di creazione del risultato
+     */
+    startTime: number;
+
+    /**
+     * Eventuale tempo totale della elaborazione in secondi
+     */
+    totalTime?: string;
+
+
+
+
+    constructor(aserviceName = "") {
+        this.service = aserviceName;
+        this.dateTime = (new Date()).toISOString();
+        this.startTime = performance.now()
+    }
+
 }
+
+
 
 /*! ---------------------------------------------------------------------------
  * @copyright Breda Sistemi industriali S.p.A., 2023 - http://bredasys.com
