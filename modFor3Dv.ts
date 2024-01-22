@@ -7,4 +7,4 @@
  * ----------------------------------------------------------------------------
  */
 
-export * as Uts from "./lib/modBrowser.ts"
+export * as Uts from "./lib/modFor3Dv.ts"
