@@ -6,8 +6,6 @@
  * ----------------------------------------------------------------------------
  */
 
-const MODULE_NAME = "BrdUts_Logger";
-
 
 /**
  * Registratore eventi per il debug
@@ -15,7 +13,7 @@ const MODULE_NAME = "BrdUts_Logger";
 export class BrdUts_Logger {
 
     private _isDebug: boolean;
-    private _module = MODULE_NAME;
+    private _module = import.meta.filename;
     private _method = "";
     private _startTime: number = performance.now();
     private _beginTime: number = performance.now();
@@ -27,6 +25,8 @@ export class BrdUts_Logger {
         this.log(`Logger started at: ${new Date().toLocaleString()}`)
     }
 
+
+
     begin(
         amodule: string,
         amethod: string,
@@ -37,6 +37,8 @@ export class BrdUts_Logger {
         this._beginTime = performance.now();
         this.log(`Begin...${amessage}`);
     }
+
+
 
     log(
         aevent: string
@@ -72,7 +74,7 @@ export class BrdUts_Logger {
         
         this.log(`End (${totalDeltaTime})ms ${amessage}`);
 
-        this._module = MODULE_NAME;
+        this._module = import.meta.filename;
         this._method = "";
 
     }
@@ -85,6 +87,13 @@ export class BrdUts_Logger {
             r.push(`${event}`)
         }
         return r.join("\n\r");
+    }
+
+
+
+    clear() { 
+        this._events = [];
+        this.log('Logger cleared');
     }
     
 }
