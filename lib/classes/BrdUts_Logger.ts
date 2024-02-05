@@ -13,8 +13,6 @@
 export class BrdUts_Logger {
 
     private _isDebug: boolean;
-    private _module = import.meta.filename;
-    private _method = "";
     private _startTime: number = performance.now();
     private _beginTime: number = performance.now();
     private _lastTime: number = performance.now();
@@ -32,16 +30,16 @@ export class BrdUts_Logger {
         amethod: string,
         amessage?: string
     ) { 
-        this._module = amodule;
-        this._method = amethod;
         this._beginTime = performance.now();
-        this.log(`Begin...${amessage}`);
+        this.log(`Begin...${amessage}`, amodule, amethod);
     }
 
 
 
     log(
-        aevent: string
+        aevent: string,
+        amodule?: string,
+        amethod?: string
     ){
         const currentTime = performance.now();
         
@@ -52,12 +50,17 @@ export class BrdUts_Logger {
             .toFixed(0)
             .padStart(5, "0");
         
-        const event = `${localDeltaTime}/${totalDeltaTime}ms - ${this._module}.${this._method}:${aevent}`;
+        const module = (amodule) ? amodule : "";
+        const method = (amethod) ? "." + amethod : "";
+         
+        const event = `${localDeltaTime}/${totalDeltaTime}ms [${module}${method}]:${aevent}`;
         
         this._events.push(event);
+
         if(this._isDebug){
             console.log(event);
         }
+
         this._lastTime = currentTime;
     }
 
@@ -73,9 +76,6 @@ export class BrdUts_Logger {
             .padStart(4, "0");
         
         this.log(`End (${totalDeltaTime})ms ${amessage}`);
-
-        this._module = import.meta.filename;
-        this._method = "";
 
     }
 
