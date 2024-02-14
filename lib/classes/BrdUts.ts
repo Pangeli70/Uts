@@ -136,9 +136,14 @@ export class BrdUts {
     }
 
 
-    /** Converts a string to a boolean considering potential truthiness for the following cases:
-     *  astring != undefined &&
-     *  (astring.toLowerCase() === "true" || astring.toLowerCase() === "ok" || astring === "1" )
+    /** 
+     * Converts a string to a boolean considering potential truthiness for the following cases:
+     * astring != undefined &&
+     * (
+     *   astring.toLowerCase() === "true" || 
+     *   astring.toLowerCase() === "ok" || 
+     *   astring === "1"
+     * )
      */
     static ToBoolean(astring?: string): boolean {
         let r = false;
@@ -153,13 +158,19 @@ export class BrdUts {
     }
 
 
-
+    /**
+     * Something wrong is going on, so brake volountarily the program and give 
+     * an alert message
+     * 
+     * @param amustBeTrueCondition Must be true
+     * @param amessage If the condition is false
+     */
     static Assert(
-        acondition: boolean,
+        amustBeTrueCondition: boolean,
         amessage: string
     ) {
         const message = "ASSERTION! " + amessage
-        if (!acondition) {
+        if (!amustBeTrueCondition) {
             alert(message);
             console.log(message);
             throw new Error(message);
