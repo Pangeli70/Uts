@@ -48,22 +48,26 @@ export class BrdUts_RestResult {
     dateTime: string;
 
     /**
-     * Momento di creazione del risultato
+     * Tempo totale della elaborazione in millisecondi
      */
-    startTime: number;
-
-    /**
-     * Eventuale tempo totale della elaborazione in secondi
-     */
-    totalTime?: string;
+    totalTime: number;
 
 
 
-
-    constructor(aserviceName = "") {
+    constructor(aserviceName: string) {
         this.service = aserviceName;
         this.dateTime = (new Date()).toISOString();
-        this.startTime = performance.now()
+        this.totalTime = performance.now()
+    }
+
+    updateTotalTime() { 
+        this.totalTime = performance.now() - this.totalTime;
+    }
+
+    fail(amessage: string) { 
+        this.ok = false;
+        this.message = amessage;
+        this.updateTotalTime();
     }
 
 }
