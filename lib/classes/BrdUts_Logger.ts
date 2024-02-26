@@ -86,7 +86,7 @@ export class BrdUts_Logger {
         for (const event of this._events){
             r.push(`${event}`)
         }
-        return r.join("\n\r");
+        return r.join("\n");
     }
 
 

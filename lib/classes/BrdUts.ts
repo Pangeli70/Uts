@@ -11,6 +11,23 @@
  */
 export class BrdUts {
 
+
+    /**
+     * 90 gradi sessaggesimali in radianti
+     */
+    static readonly RAD_90 = Math.PI / 2;
+
+    /**
+     * 180 gradi sessaggesimali in radianti
+     */
+    static readonly RAD_180 = Math.PI;
+
+    /**
+     * Coefficiente di conversione da angoli sessaggesimali a radianti
+     */
+    static readonly TO_RAD = 2 * Math.PI / 360;
+
+
     /** 
      * Perform a raw deep copy of the nested properties in an object or array using JSON 
      * conversion
@@ -40,28 +57,56 @@ export class BrdUts {
     }
 
 
+
     /**
-     * Get some Deno memory usage statistics
+     * Returns a random number in a range
+     * @param amin minimum value
+     * @param amax maximum value
+     * @param adecimalFigures number of decimal figures after the dot
+     * @remarks if the limits are swapped then are sorted properly 
      */
-    static GetMemoryUsageMb() {
-        const memoryUsage = Deno.memoryUsage();
-        const MB = 1024 * 1024;
-        const memoryUsageMb = {
-            rss: (Math.round(memoryUsage.rss / MB * 100) / 100),
-            heapTotal: this.RoundFigures(memoryUsage.heapTotal / MB, 2),
-            heapUsed: this.RoundFigures(memoryUsage.heapUsed / MB, 2),
-            external: this.RoundFigures(memoryUsage.external / MB, 2),
-        };
-        return memoryUsageMb;
+    static GetRandomInRange(
+        amin: number,
+        amax: number,
+        adecimalFigures = -1
+    ) {
+
+        if (amin > amax) {
+            const a = amin;
+            amin = amax;
+            amax = a
+        }
+        const delta = amax - amin;
+        let r = Math.random() * delta + amin;
+
+        if (adecimalFigures != -1) {
+            r = this.RoundDecimalFigures(r, adecimalFigures);
+        }
+
+        return r;
     }
+
 
 
     /**
      * Rounds a floating point number to the specified number of figures after dot
      */
-    static RoundFigures(anumber: number, afiguresAfterDot: number) {
+    static RoundDecimalFigures(anumber: number, afiguresAfterDot: number) {
         const tenPower = 10 ** afiguresAfterDot;
         return (Math.round(anumber * tenPower) / tenPower);
+    }
+
+
+
+    /**
+     * Gets a random value from an enum
+     * @param aenum 
+     */
+    static GetRandomFromEnum<E>(aenum: any) {
+        const keys = Object.keys(aenum);
+        const index = Math.floor(Math.random() * keys.length);
+        const key = keys[index];
+        return aenum[key] as E;
     }
 
 
@@ -178,10 +223,40 @@ export class BrdUts {
     }
 
 
-    static LogMemory(awhere: string) {
-        const megabyte = Math.round((Deno.memoryUsage().rss / 1024 / 1024) * 1000) / 1000;
-        console.log(`${awhere}: Current memory usage: ${megabyte}MB`)
+    /**
+     * Get some Deno memory usage statistics
+     */
+    static GetMemoryUsageMb() {
+
+        if (Deno) {
+            const memoryUsage = Deno.memoryUsage();
+            const MB = 1024 * 1024;
+            const r = {
+                rss: (Math.round(memoryUsage.rss / MB * 100) / 100),
+                heapTotal: this.RoundDecimalFigures(memoryUsage.heapTotal / MB, 2),
+                heapUsed: this.RoundDecimalFigures(memoryUsage.heapUsed / MB, 2),
+                external: this.RoundDecimalFigures(memoryUsage.external / MB, 2),
+            };
+            return r;
+        }
+        return {
+            message: "This function is Deno only"
+        };
     }
+
+
+
+    static LogMemory(awhere: string) {
+        if (Deno) {
+            const megabyte = Math.round((Deno.memoryUsage().rss / 1024 / 1024) * 1000) / 1000;
+            console.log(`${awhere}: Current memory usage: ${megabyte}MB`)
+        }
+        else { 
+            console.log("This function is Deno only");
+        }
+    }
+
+
 
     static ZeroPad(anum: number, aplaces: number) {
         return String(anum).padStart(aplaces, '0')

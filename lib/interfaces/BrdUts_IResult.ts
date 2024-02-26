@@ -2,6 +2,7 @@
  * @module [BrdUts]
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20230418
+ * @version 0.2 APG 20240225 Rafactored
  * ----------------------------------------------------------------------------
  */
 
@@ -12,29 +13,49 @@ import { BrdUts_TSignature } from "../types/BrdUts_Types.ts";
  */
 export class BrdUts_Result {
 
-    /** Module where the result was created */
-    module: string;
 
     /** Status of the result */
-    ok: boolean;
+    ok = true;
 
-    /** Error message if status is false */
-    message?: string;
+    /** Warnings, notifications and Error messages if status is false */
+    private _messages: string[] = [];
 
-    /** Value fr the object carried by the result */
-    payload?: unknown;
+    /** Value for the object carried by the result */
+    private _payload?: unknown;
+    get payload() { return this._payload; }
 
     /** Signature of the payload's type for quick raw type verification*/
-    signature?: BrdUts_TSignature;
+    private _signature?: BrdUts_TSignature;
+    get signature() { return this._signature; }
 
 
 
-    constructor(amodule: string, asignature?: BrdUts_TSignature) { 
-        this.ok = true;
-        this.module = amodule;
-        if (asignature) { 
-            this.signature = asignature;
-        }
+
+    setPayload(
+        apayload: unknown,
+        asignature: BrdUts_TSignature
+    ) {
+
+        this._payload = apayload;
+        this._signature = asignature;
+
+    }
+
+
+
+    addMessage(
+        amethod: string,
+        amessage: string
+    ) {
+        this._messages.push(`${amethod}:${amessage}`);
+    }
+
+
+
+    getMessages(
+        ajoinString = "/n"
+    ) {
+        return this._messages.join(ajoinString);
     }
 
 }
