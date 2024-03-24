@@ -6,6 +6,13 @@
  * ----------------------------------------------------------------------------
  */
 
+import {
+    BrdUts_TRestPayload
+} from "../types/BrdUts_Types.ts";
+
+
+
+
 /**
  * Risultato della chiamata ad un servizio REST Breda
  */
@@ -40,7 +47,7 @@ export class BrdUts_RestResult {
     /**
      * Eventuale risultato della elaborazione 
      */
-    payload?: unknown;
+    payload?: BrdUts_TRestPayload;
 
     /**
      * Data ora del ricevimento della richiesta 

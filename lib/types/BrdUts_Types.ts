@@ -12,6 +12,15 @@
 export type BrdUts_TSignature = string | symbol;
 
 
+/**
+ * Payload per il result o il rest result
+ */
+export type BrdUts_TRestPayload = {
+    data: unknown,
+    signature: BrdUts_TSignature
+}; 
+
+
 /*! ---------------------------------------------------------------------------
  * @copyright Breda Sistemi industriali S.p.A., 2023 - http://bredasys.com
  * All rights reserved 
