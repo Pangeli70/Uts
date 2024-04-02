@@ -7,8 +7,8 @@
  */
 
 import {
-    BrdUts_TRestPayload
-} from "../types/BrdUts_Types.ts";
+    BrdUts_IRestPayload
+} from "../interfaces/BrdUts_IRestPayload.ts";
 
 
 
@@ -47,7 +47,7 @@ export class BrdUts_RestResult {
     /**
      * Eventuale risultato della elaborazione 
      */
-    payload?: BrdUts_TRestPayload;
+    payload?: BrdUts_IRestPayload;
 
     /**
      * Data ora del ricevimento della richiesta 

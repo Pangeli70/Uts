@@ -3,10 +3,11 @@
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20230418
  * @version 0.2 APG 20240225 Rafactored
+ * @version 0.3 APG 20240402 Removed signature type
  * ----------------------------------------------------------------------------
  */
 
-import { BrdUts_TSignature } from "../types/BrdUts_Types.ts";
+
 
 /**
  * Result with error handling to avoid exceptions handling
@@ -25,7 +26,7 @@ export class BrdUts_Result {
     get payload() { return this._payload; }
 
     /** Signature of the payload's type for quick raw type verification*/
-    private _signature?: BrdUts_TSignature;
+    private _signature?: string;
     get signature() { return this._signature; }
 
 
@@ -33,7 +34,7 @@ export class BrdUts_Result {
 
     setPayload(
         apayload: unknown,
-        asignature: BrdUts_TSignature
+        asignature: string
     ) {
 
         this._payload = apayload;

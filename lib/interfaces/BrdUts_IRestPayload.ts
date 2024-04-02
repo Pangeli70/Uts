@@ -2,22 +2,29 @@
  * @module [BrdUts]
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20230418
+ * @version 0.1 APG 20240402 trasformato in interface
  * ----------------------------------------------------------------------------
  */
 
 
-/**
- * Firma del Payload per il result
- */
-export type BrdUts_TSignature = string | symbol;
-
 
 /**
- * Payload per il result o il rest result
+ * Payload per il risultato di una chiamata ad un server REST
  */
-export type BrdUts_TRestPayload = {
-    data: unknown,
-    signature: BrdUts_TSignature
+export interface BrdUts_IRestPayload  {
+
+    /**
+     * Firma del record che descrive il tipo di dati inviati o ricevuti
+     */
+    signature: string;
+
+    /**
+     * Può essere qualsiasi tipo per questo per non dover gestire una validazione
+     * granulare dei dati ricevuti dalla chiamata al server REST ci affidiamo alla 
+     * correttezza della corrispondenza con la firma. Non è solidissimo ma è meglio 
+     * di niente per fare una convalida rapida
+     */
+    data: unknown;
 }; 
 
 
