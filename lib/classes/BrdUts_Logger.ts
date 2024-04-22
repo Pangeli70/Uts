@@ -12,14 +12,14 @@
  */
 export class BrdUts_Logger {
 
-    private _isDebug: boolean;
+    private _toConsole: boolean;
     private _startTime: number = performance.now();
     private _beginTime: number = performance.now();
     private _lastTime: number = performance.now();
     private _events: string[] = [ ];
 
-    constructor (aisDebug: boolean){
-        this._isDebug = aisDebug;
+    constructor (atoConsole: boolean){
+        this._toConsole = atoConsole;
         this.log(`Logger started at: ${new Date().toLocaleString()}`)
     }
 
@@ -28,7 +28,7 @@ export class BrdUts_Logger {
     begin(
         amodule: string,
         amethod: string,
-        amessage?: string
+        amessage = ""
     ) { 
         this._beginTime = performance.now();
         this.log(`Begin...${amessage}`, amodule, amethod);
@@ -57,7 +57,7 @@ export class BrdUts_Logger {
         
         this._events.push(event);
 
-        if(this._isDebug){
+        if(this._toConsole){
             console.log(event);
         }
 
@@ -67,7 +67,7 @@ export class BrdUts_Logger {
 
 
     end(
-        amessage?: string
+        amessage = ""
     ) {
         const currentTime = performance.now();
 
@@ -75,7 +75,7 @@ export class BrdUts_Logger {
             .toFixed(0)
             .padStart(4, "0");
         
-        this.log(`End (${totalDeltaTime})ms ${amessage}`);
+        this.log(`${amessage} ...end (${totalDeltaTime})ms`);
 
     }
 

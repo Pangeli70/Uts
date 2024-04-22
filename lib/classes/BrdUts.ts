@@ -99,8 +99,8 @@ export class BrdUts {
 
 
     /**
-     * Gets a random value from an enum
-     * @param aenum 
+     * Restituisce un valore casuale da una enumerazione
+     * @param aenum Una enumerazione
      */
     static GetRandomFromEnum<E>(aenum: any) {
         const keys = Object.keys(aenum);
@@ -110,6 +110,37 @@ export class BrdUts {
     }
 
 
+
+    /**
+     * Restituisce tutti i valori di una enumerazione come un array
+     * @param aenum Una enumerazione
+     */
+    static GetEnumAsArray<E>(aenum: any) {
+        const r: E[] = [];
+
+        const keys = Object.keys(aenum);
+        for (const key of keys) {
+            r.push(aenum[key] as E);
+        }
+
+        return r;
+    }
+
+
+    
+    /**
+     * Verifica se il valore passato è presente nella enumerazione
+     * @param aenum Enumerazione
+     * @param avalue Valore
+     * @returns Vero se il valore è contenuto nella enumerazione
+     */
+    static  DoesEnumStringContains(aenum: any, avalue: string): boolean {
+        return (Object.values(aenum).includes(avalue));
+    }
+
+
+
+    
     /**
      * Converts an array of objects in a csv representation ready to be stored 
      * on persistent media or delivered to the network. The first row will contain
