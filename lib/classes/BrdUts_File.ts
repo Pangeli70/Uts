@@ -95,6 +95,9 @@ export class BrdUts_File {
         atranscodification: unknown = null
     ) {
 
+        let discardLastColumn = false;
+
+        const messageTitle = `${this.CLASS_NAME}/${this.ReadCsveFile.name}/`;
         const r: unknown[] = [];
 
         const text = await Deno.readTextFile(afile);
@@ -102,12 +105,16 @@ export class BrdUts_File {
         const table: string[][] = [];
         const rows = text.split("\r\n");
         for (const row of rows) {
+            // Riga pulita
             const cleanRow = row.trim();
+            // Non è riga vuota
             if (cleanRow != "") {
+                // Non è un commento
                 if (cleanRow.substring(0, 2) != "//") {
                     const fields = cleanRow.split(aseparator);
                     let empty = true;
                     for (const field of fields) {
+                        // Almeno uno dei campi contiene qualcosa
                         if (field != "") {
                             empty = false;
                             break
@@ -124,19 +131,33 @@ export class BrdUts_File {
         const fieldNames = table[0];
         const fieldTypes = table[1];
 
+        if (fieldNames[fieldNames.length - 1] == "") {
+            discardLastColumn = true;
+        }
+
         BrdUts.Assert(
             fieldTypes.length == fieldNames.length,
-            ` ${this.CLASS_NAME} / Error! The number of types (${fieldTypes.length}) is not equal to the expected number of columns (${fieldNames.length})`
+            ` ${messageTitle} / Il numero di tipi [${fieldTypes.length}] nella seconda riga del file [${afile}] non è uguale al numero di colonne atteso [${fieldNames.length}]`
         );
 
+        const numFields = fieldNames.length - ((discardLastColumn) ? 1 : 0);
 
-        if (
-            atranscodification != null &&
-            typeof (atranscodification) == "object" &&
-            Object.keys(atranscodification).length == fieldNames.length
-        ) {
+        
+        if (atranscodification != null) {
 
-            for (let i = 0; i < fieldNames.length; i++) {
+            BrdUts.Assert(
+                typeof (atranscodification) == "object",
+                ` ${messageTitle} / L'argomento passato per la transcodifica non è un oggetto`
+            );
+
+            const transcodificationFields = Object.keys(atranscodification).length;
+
+            BrdUts.Assert(
+                transcodificationFields == numFields,
+                ` ${messageTitle} / Il numero di campi per la per la transcodifica [${transcodificationFields}] non è uguale al numero di colonne atteso [${fieldNames.length}]`
+            );
+
+            for (let i = 0; i < numFields; i++) {
                 const name = fieldNames[i].trim();
                 const property = (<any>atranscodification)[name];
                 if (property != undefined) {
@@ -145,7 +166,7 @@ export class BrdUts_File {
                 else {
                     BrdUts.Assert(
                         property != undefined,
-                        `${this.CLASS_NAME} / Errore nella transcodifica del campo ${name} del file ${afile}: non esiste una voce equivalente nell'oggetto ${JSON.stringify(atranscodification)}`
+                        `${messageTitle} / Errore nella transcodifica del campo [${name}] del file [${afile}]: non esiste una voce equivalente nell'oggetto ${JSON.stringify(atranscodification)}`
                     )
                 }
             }
@@ -155,11 +176,11 @@ export class BrdUts_File {
 
             BrdUts.Assert(
                 table[i].length == fieldNames.length,
-                ` ${this.CLASS_NAME} / Error! In row ${i} (${table[i][0]}), the number of cells (${table[i].length}) is not equal to the expected (${fieldNames.length})`
+                ` ${messageTitle} / Errore nella riga [${i}] [${table[i][0]}] del file [${afile}]: Il numero di celle [${table[i].length}] non è uguale al numero di colonne atteso [${fieldNames.length})`
             );
 
             const anyObject: any = {};
-            for (let j = 0; j < fieldNames.length; j++) {
+            for (let j = 0; j < numFields; j++) {
                 let v: number | string | boolean | null = null;
                 const cell = table[i][j];
 
@@ -197,7 +218,7 @@ export class BrdUts_File {
                     default:
                         BrdUts.Assert(
                             false,
-                            `${this.CLASS_NAME} / Errore il tipo di campo ${fieldTypes[j]} del file ${afile} non è valido : i tipi riconosciuti sono "string", "number", "integer" e "boolean"`
+                            `${messageTitle} / Errore il tipo di campo [${j}]/[${fieldTypes[j]}] del file [${afile}] non è valido : i tipi riconosciuti sono "string", "number", "integer" e "boolean"`
                         )
                 }
                 anyObject[fieldNames[j]] = v;
