@@ -6,11 +6,11 @@
  */
 
 export interface BrdUts_IMultilanguage {
-    it: string;
-    en?: string;
-    fr?: string;
-    de?: string;
-    es?: string;
+    IT: string;
+    EN?: string;
+    FR?: string;
+    DE?: string;
+    ES?: string;
 
 }
 
