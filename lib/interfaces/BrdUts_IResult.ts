@@ -2,8 +2,8 @@
  * @module [BrdUts]
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20230418
- * @version 0.2 APG 20240225 Rafactored
- * @version 0.3 APG 20240402 Removed signature type
+ * @version 0.2 APG 20240225 Refactored
+ * @version 0.3 APG 20240402 Removed symbol from signature type
  * ----------------------------------------------------------------------------
  */
 
