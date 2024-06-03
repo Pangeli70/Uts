@@ -44,6 +44,7 @@ export class BrdUts_RestResult {
      */
     message: string | string[] = "";
 
+
     /**
      * Eventuale risultato della elaborazione 
      */

@@ -5,11 +5,22 @@
  * ----------------------------------------------------------------------------
  */
 
+import {
+    BrdUts_TSignature
+} from "../types/BrdUts_TSignature.ts";
+
+
 
 /**
- * Firma del Payload per il result
+ * Payload per il risultato di una chiamata ad un microservizio REST
  */
-export type BrdUts_TSignature = string | symbol;
+export interface BrdUts_IRestPayload {
+
+    signature: BrdUts_TSignature;
+
+    data: unknown;
+}
+
 
 
 /*! ---------------------------------------------------------------------------
