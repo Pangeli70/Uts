@@ -16,8 +16,10 @@ import {
  */
 export interface BrdUts_IRestPayload {
 
+    /** Firma per l'identificazione spicciola del tipo di dati trasportati dal payload */
     signature: BrdUts_TSignature;
 
+    /** Risultato della chiamata REST */
     data: unknown;
 }
 

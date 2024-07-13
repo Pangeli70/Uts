@@ -14,7 +14,7 @@ import {
 
 
 /**
- * Risultato della chiamata ad un servizio REST Breda
+ * Risultato della chiamata ad un microservizio REST
  */
 export class BrdUts_RestResult {
 
@@ -42,7 +42,7 @@ export class BrdUts_RestResult {
      * Messaggio associato alla risposta. Può essere un messaggio di errore o un
      * messaggio informativo.
      */
-    message: string | string[] = "";
+    message: string = "";
 
 
     /**

@@ -8,3 +8,4 @@
 // Deno std
 export * as Fs from "https://deno.land/std@0.182.0/fs/mod.ts";
 export * as Path from "https://deno.land/std@0.182.0/path/mod.ts";
+export type { Cookie } from "https://deno.land/std@0.182.0/http/cookie.ts";

@@ -13,7 +13,11 @@ export * from "./classes/BrdUts_Result.ts";
 export * from "./classes/BrdUts_Spec.ts";
 export * from "./classes/BrdUts_Translator.ts";
 
+export * from "./services/BrdUts_LogService.ts";
 
+export * from "./enums/BrdUts_eLogType.ts";
+
+export * from "./interfaces/BrdUts_ILogEvent.ts";
 export * from "./interfaces/BrdUts_IMicroservice.ts";
 export * from "./interfaces/BrdUts_IMultilanguage.ts";
 export * from "./interfaces/BrdUts_IRestPayload.ts";
