@@ -1,33 +1,34 @@
 /** ---------------------------------------------------------------------------
- * @module [BrdEdr]
+ * @module [ApgEdr]
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20240706
+ * @version 0.2 APG 20240728 English comments
  * ----------------------------------------------------------------------------
  */
 
 /**
- * Tipo di evento registrato
+ * Type of event
  */
-export enum BrdUts_eLogType {
+export enum ApgUts_eLogType {
 
-    /** Errore */
+    /** Error */
     ERROR = "Error",
 
-    /** Informazione */
+    /** information */
     INFO = "Info ",
 
-    /** Prestazione */
+    /** Performance measure */
     PERF = "Perf ",
 
-    /** Sviluppo */
+    /** Debug */
     DEBUG = "Debug",
 
-    /** Chiamata */
+    /** Call: request received */
     CALL = "Call ",
 
-    /** Risposta */
+    /** Answer: response ready */
     ANSW = "Answ ",
 
-    /** Autenticazione */
+    /** Authentication */
     AUTH = "Auth ",
 }

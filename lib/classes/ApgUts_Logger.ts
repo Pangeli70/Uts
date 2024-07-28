@@ -1,23 +1,31 @@
 /** ---------------------------------------------------------------------------
- * @module [BrdUts]
+ * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto 
  * @version 0.1 APG 20230724
- * @version 0.2 APG 20231227 Estratto dal vecchio 3Dv e aggiunto metodi Begin ed End
+ * @version 0.2 APG 20231227 Added Begin and End methods
+ * @version 0.3 APG 20240728 English comments
  * ----------------------------------------------------------------------------
  */
 
 
 /**
- * Registratore eventi per il debug
+ * Events recorder for debugging and telemetry
  */
-export class BrdUts_Logger {
+export class ApgUts_Logger {
+
 
     private _toConsole: boolean;
+    
     private _startTime: number = performance.now();
+
     private _beginTime: number = performance.now();
+
     private _lastTime: number = performance.now();
+
     private _events: string[] = [ ];
 
+
+    
     constructor (atoConsole: boolean){
         this._toConsole = atoConsole;
         this.log(`Logger started at: ${new Date().toLocaleString()}`)
@@ -97,13 +105,3 @@ export class BrdUts_Logger {
     }
     
 }
-
-/*! ---------------------------------------------------------------------------
- * @copyright Breda Sistemi industriali S.p.A., 2023 - http://bredasys.com
- * All rights reserved 
- * @licence You cannot host, display, distribute or share this Work in any 
- * form, both physical and digital. You cannot use this Work in any commercial
- * or non-commercial product, website or project. You cannot sell this Work
- * and you cannot mint an NFTs out of it.
- * --------------------------------------------------------------------------- 
- */

@@ -1,5 +1,5 @@
 /** ---------------------------------------------------------------------------
- * @module [BrdUts]
+ * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20220909 Alpha version
  * @version 0.2 APG 20230418 Extraction to its own module
@@ -9,23 +9,19 @@
 /**
  * Breda Deno Typescript utilities
  */
-export class BrdUts {
+export class ApgUts {
 
 
-    /**
-     * 90 gradi sessaggesimali in radianti
-     */
-    static readonly RAD_90 = Math.PI / 2;
 
     /**
-     * 180 gradi sessaggesimali in radianti
+     * Returns the module name from an import.meta.url 
      */
-    static readonly RAD_180 = Math.PI;
+    static ModuleFromUrl(aImportMetaUrl: string) {
 
-    /**
-     * Coefficiente di conversione da angoli sessaggesimali a radianti
-     */
-    static readonly TO_RAD = 2 * Math.PI / 360;
+        return aImportMetaUrl.split('/').pop()!.split('.')[0];
+
+    }
+
 
 
     /** 
@@ -35,6 +31,8 @@ export class BrdUts {
     static JsonDeepCopy(aobj: any) {
         return JSON.parse(JSON.stringify(aobj));
     }
+
+
 
     /**
      * Create a high entropy hash value starting from a string
@@ -56,6 +54,47 @@ export class BrdUts {
 
     }
 
+
+    /**
+     * Sanitize HTML text converting the characters that could create problems
+     */
+    static EscapeHTML(ahtml: string) {
+
+        return ahtml
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+    }
+
+
+    /** 
+     * Replaces invalid characters in urls with correct escape sequences
+     */
+    static Urlify(apath: string) {
+        let r = apath;
+        let i = 0;
+        const l = r.length;
+        do {
+            i = r.indexOf('=');
+            if (i !== -1) {
+                let b = true;
+                let j = i;
+                do {
+                    j++;
+                    if (r[j] === '&' || j === l) {
+                        r = r.substring(0, i) + r.substring(j, l);
+                        b = false;
+                    }
+                } while (b);
+            }
+        } while (i !== -1);
+        r = r
+            .replace(/[\/?&]/g, '_')
+            .replace(/[:=]/g, '');
+        return r;
+    }
 
 
     /**
@@ -97,101 +136,6 @@ export class BrdUts {
     }
 
 
-
-    /**
-     * Restituisce un valore casuale da una enumerazione
-     * @param aenum Una enumerazione
-     */
-    static GetRandomFromEnum<E>(aenum: any) {
-        const keys = Object.keys(aenum);
-        const index = Math.floor(Math.random() * keys.length);
-        const key = keys[index];
-        return aenum[key] as E;
-    }
-
-
-
-    /**
-     * Restituisce tutti i valori di una enumerazione come un array
-     * @param aenum Una enumerazione
-     */
-    static GetEnumAsArray<E>(aenum: any) {
-        const r: E[] = [];
-
-        const keys = Object.keys(aenum);
-        for (const key of keys) {
-            r.push(aenum[key] as E);
-        }
-
-        return r;
-    }
-
-
-    
-    /**
-     * Verifica se il valore passato è presente nella enumerazione
-     * @param aenum Enumerazione
-     * @param avalue Valore
-     * @returns Vero se il valore è contenuto nella enumerazione
-     */
-    static  DoesEnumStringContains(aenum: any, avalue: string): boolean {
-        return (Object.values(aenum).includes(avalue));
-    }
-
-
-
-    
-    /**
-     * Converts an array of objects in a csv representation ready to be stored 
-     * on persistent media or delivered to the network. The first row will contain
-     * the names of the properties of the object
-     * @param aarray of objects simple properties single level non nested
-     * @param aseparator optional string (character) to be used as field separator
-     * @returns a string of rows separated by crlf characters
-     */
-    static ArrayToCsv(aarray: Record<string, unknown>[], aseparator = ";") {
-        const r: string[] = [];
-        const first = aarray[0];
-        const keys = Object.keys(first);
-        let row = "";
-        let i = 0;
-
-        for (const key of keys) {
-            if (i > 0) {
-                row += aseparator;
-            }
-            row += key;
-            i++;
-        }
-        r.push(row);
-
-        for (const item of aarray) {
-            row = "";
-            i = 0;
-            for (const key of keys) {
-                if (i > 0) {
-                    row += aseparator;
-                }
-                const val = (<any>item)[key];
-                if (this.IsDate(val)) {
-                    row += val.getDate() + "/" + (val.getMonth() + 1) + "/" + val.getFullYear()
-                }
-                else if (this.IsNumber(val)) {
-                    const stamp = parseFloat(val).toString().replaceAll(".", ",");
-                    row += stamp;
-                }
-                else if (typeof (val) == "string") {
-                    row += val;
-                }
-                else {
-                    row += (isNaN(val)) ? "" : val;
-                }
-                i++;
-            }
-            r.push(row);
-        }
-        return r.join("\r\n");
-    }
 
 
     /**
@@ -282,7 +226,7 @@ export class BrdUts {
             const megabyte = Math.round((Deno.memoryUsage().rss / 1024 / 1024) * 1000) / 1000;
             console.log(`${awhere}: Current memory usage: ${megabyte}MB`)
         }
-        else { 
+        else {
             console.log("This function is Deno only");
         }
     }
@@ -294,12 +238,3 @@ export class BrdUts {
     }
 }
 
-/*! ---------------------------------------------------------------------------
- * @copyright Breda Sistemi industriali S.p.A., 2023 - http://bredasys.com
- * All rights reserved 
- * @licence You cannot host, display, distribute or share this Work in any 
- * form, both physical and digital. You cannot use this Work in any commercial
- * or non-commercial product, website or project. You cannot sell this Work
- * and you cannot mint an NFTs out of it.
- * --------------------------------------------------------------------------- 
- */
