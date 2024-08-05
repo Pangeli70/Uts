@@ -16,6 +16,7 @@ export * from "./classes/ApgUts_Spec.ts";
 export * from "./classes/ApgUts_Translator.ts";
 
 export * from "./services/ApgUts_LogService.ts";
+export * from "./services/ApgUts_BaseService.ts";
 
 export * from "./enums/ApgUts_eLogType.ts";
 

@@ -5,7 +5,10 @@
  * ----------------------------------------------------------------------------
  */
 
-import { Uts } from "../../mod.ts";
+
+import {
+    ApgUts
+} from "../classes/ApgUts.ts";
 import {
     ApgUts_eLogType
 } from "../enums/ApgUts_eLogType.ts";
@@ -28,7 +31,7 @@ export class ApgUts_LogService {
         amessage: string
     ) {
 
-        const module = Uts.ApgUts.ModuleFromUrl(aimportMetaUrl);
+        const module = ApgUts.ModuleFromUrl(aimportMetaUrl);
 
         const r: ApgUts_ILogEvent = {
             created: new Date(),
