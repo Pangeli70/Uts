@@ -7,6 +7,7 @@ export * as Std from "./imports/deno.land.std.ts";
 
 export * from "./classes/ApgUts.ts";
 export * from "./classes/ApgUts_Csve.ts";
+export * from "./classes/ApgUts_DateTimeStamp.ts";
 export * from "./classes/ApgUts_Enum.ts";
 export * from "./classes/ApgUts_File.ts";
 export * from "./classes/ApgUts_Logger.ts";

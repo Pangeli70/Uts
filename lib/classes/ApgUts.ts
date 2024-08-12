@@ -28,6 +28,7 @@ export class ApgUts {
      * Perform a raw deep copy of the nested properties in an object or array using JSON 
      * conversion
      */
+    // deno-lint-ignore no-explicit-any
     static JsonDeepCopy(aobj: any) {
         return JSON.parse(JSON.stringify(aobj));
     }
@@ -141,6 +142,7 @@ export class ApgUts {
     /**
      * Check if the supplied parameter is a Date
      */
+    // deno-lint-ignore no-explicit-any
     static IsDate(avalue: any) {
         const r = (avalue && avalue.getMonth && typeof avalue.getMonth == "function");
         return r == true;
@@ -150,6 +152,7 @@ export class ApgUts {
     /**
      * Check if the supplied parameter is a number
      */
+    // deno-lint-ignore no-explicit-any
     static IsNumber(avalue: any) {
         const r = (avalue && typeof avalue === 'number' && isFinite(avalue));
         return r == true;
