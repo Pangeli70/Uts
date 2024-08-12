@@ -8,12 +8,12 @@
 
 // Apg local monorepo
 
-// Local >>>
+/* Local >>
 export * from "../../mod.ts";
-// Local <<<
+Local << */
 
 // Apg Github private repos
 
-/* Github >>
+// Github >>>
 export * from "https://raw.githubusercontent.com/Pangeli70/apg-Apg-uts/master/mod.ts";
-Github << */
+// Github <<<
