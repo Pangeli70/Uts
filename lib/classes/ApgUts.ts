@@ -3,6 +3,7 @@
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20220909 Alpha version
  * @version 0.2 APG 20230418 Extraction to its own module
+ * @version 1.0 APG 20240814 IsDenoDeploy
  * ----------------------------------------------------------------------------
  */
 
@@ -17,9 +18,7 @@ export class ApgUts {
      * Returns the module name from an import.meta.url 
      */
     static ModuleFromUrl(aImportMetaUrl: string) {
-
         return aImportMetaUrl.split('/').pop()!.split('.')[0];
-
     }
 
 
@@ -56,6 +55,7 @@ export class ApgUts {
     }
 
 
+
     /**
      * Sanitize HTML text converting the characters that could create problems
      */
@@ -68,6 +68,7 @@ export class ApgUts {
             .replaceAll('"', '&quot;')
             .replaceAll("'", '&#039;');
     }
+
 
 
     /** 
@@ -96,6 +97,7 @@ export class ApgUts {
             .replace(/[:=]/g, '');
         return r;
     }
+
 
 
     /**
@@ -138,7 +140,6 @@ export class ApgUts {
 
 
 
-
     /**
      * Check if the supplied parameter is a Date
      */
@@ -149,6 +150,7 @@ export class ApgUts {
     }
 
 
+
     /**
      * Check if the supplied parameter is a number
      */
@@ -157,6 +159,16 @@ export class ApgUts {
         const r = (avalue && typeof avalue === 'number' && isFinite(avalue));
         return r == true;
     }
+
+
+
+    /**
+     * Check if the environment is Deno deploy
+     */
+    static IsDenoDeploy() {
+        return Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+    }
+
 
 
     /** 
@@ -201,6 +213,7 @@ export class ApgUts {
     }
 
 
+
     /**
      * Get some Deno memory usage statistics
      */
@@ -224,20 +237,15 @@ export class ApgUts {
 
 
 
-    static LogMemory(awhere: string) {
-        if (Deno) {
-            const megabyte = Math.round((Deno.memoryUsage().rss / 1024 / 1024) * 1000) / 1000;
-            console.log(`${awhere}: Current memory usage: ${megabyte}MB`)
-        }
-        else {
-            console.log("This function is Deno only");
-        }
-    }
-
-
-
+    /**
+     * Convert a number to a zero padded string
+     * 
+     * @param anum Number to be converted
+     * @param aplaces Number of places to pad
+     */
     static ZeroPad(anum: number, aplaces: number) {
         return String(anum).padStart(aplaces, '0')
     }
+
 }
 
