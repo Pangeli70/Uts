@@ -12,7 +12,7 @@
 /**
  * Result with error handling to avoid exceptions handling
  */
-export class ApgUts_Result {
+export class ApgUts_Result<T> {
 
 
     /**
@@ -28,7 +28,7 @@ export class ApgUts_Result {
     /**
      * Value for the object carried by the result
      */
-    private _payload?: unknown;
+    private _payload?: T;
     get payload() { return this._payload; }
 
     /**
@@ -41,7 +41,7 @@ export class ApgUts_Result {
 
 
     setPayload(
-        apayload: unknown,
+        apayload: T,
         asignature: string
     ) {
 
@@ -52,11 +52,22 @@ export class ApgUts_Result {
 
 
 
-    addMessage(
+    error(
         amethod: string,
         amessage: string
     ) {
-        this._messages.push(`${amethod}:${amessage}`);
+        this.ok = false;
+        this._messages.push(`${amethod}: ${amessage}`);
+        return this;
+    }
+
+
+
+    message(
+        amethod: string,
+        amessage: string
+    ) {
+        this._messages.push(`${amethod}: ${amessage}`);
     }
 
 
