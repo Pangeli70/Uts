@@ -25,11 +25,22 @@ export class ApgUts {
 
     /** 
      * Perform a raw deep copy of the nested properties in an object or array using JSON 
-     * conversion
+     * conversion. Use ApgUts_Object to do an object deep copy
      */
     // deno-lint-ignore no-explicit-any
     static JsonDeepCopy(aobj: any) {
         return JSON.parse(JSON.stringify(aobj));
+    }
+
+
+
+    /**
+     * Perform a raw deep compare of the nested properties in an object or array using 
+     * JSON stringify conversion. Use ApgUts_Object to do an object deep comparison
+     */
+    // deno-lint-ignore no-explicit-any
+    static JsonDeepCompare(aobj1: any, aobj2: any) {
+        return JSON.stringify(aobj1) === JSON.stringify(aobj2);
     }
 
 
@@ -100,43 +111,7 @@ export class ApgUts {
 
 
 
-    /**
-     * Returns a random number in a range
-     * @param amin minimum value
-     * @param amax maximum value
-     * @param adecimalFigures number of decimal figures after the dot
-     * @remarks if the limits are swapped then are sorted properly 
-     */
-    static GetRandomInRange(
-        amin: number,
-        amax: number,
-        adecimalFigures = -1
-    ) {
 
-        if (amin > amax) {
-            const a = amin;
-            amin = amax;
-            amax = a
-        }
-        const delta = amax - amin;
-        let r = Math.random() * delta + amin;
-
-        if (adecimalFigures != -1) {
-            r = this.RoundDecimalFigures(r, adecimalFigures);
-        }
-
-        return r;
-    }
-
-
-
-    /**
-     * Rounds a floating point number to the specified number of figures after dot
-     */
-    static RoundDecimalFigures(anumber: number, afiguresAfterDot: number) {
-        const tenPower = 10 ** afiguresAfterDot;
-        return (Math.round(anumber * tenPower) / tenPower);
-    }
 
 
 
@@ -215,24 +190,38 @@ export class ApgUts {
 
 
     /**
+     * Rounds a floating point number to the specified number of figures after dot
+     */
+    static RoundDecimalFigures(anumber: number, afiguresAfterDot: number) {
+        const tenPower = 10 ** afiguresAfterDot;
+        return (Math.round(anumber * tenPower) / tenPower);
+    }
+
+
+    
+    /**
      * Get some Deno memory usage statistics
      */
     static GetMemoryUsageMb() {
-
+        const r = {
+            rss: 0,
+            heapTotal: 0,
+            heapUsed: 0,
+            external: 0,
+        };
         if (Deno) {
             const memoryUsage = Deno.memoryUsage();
             const MB = 1024 * 1024;
-            const r = {
-                rss: (Math.round(memoryUsage.rss / MB * 100) / 100),
-                heapTotal: this.RoundDecimalFigures(memoryUsage.heapTotal / MB, 2),
-                heapUsed: this.RoundDecimalFigures(memoryUsage.heapUsed / MB, 2),
-                external: this.RoundDecimalFigures(memoryUsage.external / MB, 2),
-            };
-            return r;
+
+            r.rss = (Math.round(memoryUsage.rss / MB * 100) / 100);
+            r.heapTotal = this.RoundDecimalFigures(memoryUsage.heapTotal / MB, 2);
+            r.heapUsed = this.RoundDecimalFigures(memoryUsage.heapUsed / MB, 2);
+            r.external = this.RoundDecimalFigures(memoryUsage.external / MB, 2);
+
         }
-        return {
-            message: "This function is Deno only"
-        };
+
+        return r;
+
     }
 
 

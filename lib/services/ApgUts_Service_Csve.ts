@@ -6,8 +6,11 @@
  */
 
 import {
+    ApgUts_Service
+} from "./ApgUts_Service.ts";
+import {
     ApgUts
-} from "./ApgUts.ts";
+} from "../statics/ApgUts.ts";
 
 
 /**
@@ -22,10 +25,12 @@ import {
  * 
  * Comment rows are allowed if the first value is prefixed with the "//" prefix
  */
-export class ApgUts_Csve {
+export class ApgUts_Service_Csve extends ApgUts_Service {
 
 
-    static CLASS_NAME = ApgUts.ModuleFromUrl(import.meta.url);
+    protected static override InitServiceName() {
+        return ApgUts_Service_Csve.name;
+    }
 
 
     /**
@@ -112,9 +117,10 @@ export class ApgUts_Csve {
         atranscodification: unknown = null
     ) {
 
+        const method = this.Method(this.ReadCsveFile)
         let discardLastColumn = false;
 
-        const messageTitle = `${this.CLASS_NAME}/${this.ReadCsveFile.name}/`;
+        const messageTitle = `${method}/`;
         const r: unknown[] = [];
 
         const text = await Deno.readTextFile(afile);

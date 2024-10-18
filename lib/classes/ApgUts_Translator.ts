@@ -33,7 +33,8 @@ export class ApgUts_Translator {
 
     get(
         aitem: string,
-        alang: ApgUts_TLanguage
+        alang: ApgUts_TLanguage,
+        aparams?: string[]
     ) {
         const m = this._dictionary[aitem];
         if (m == undefined) {
@@ -43,6 +44,13 @@ export class ApgUts_Translator {
         let r = m[alang];
         if (r == undefined) {
             r = `[${alang}] ` + m['IT'];
+        }
+
+        if (aparams) {
+
+            for (let i = 1; i <= aparams.length; i++) {
+                r = r.replaceAll(`[%${i}]`, aparams[i-1]);
+            }
         }
 
         return r;
@@ -67,12 +75,20 @@ export class ApgUts_Translator {
 
     static Translate(
         aitem: ApgUts_IMultilanguage,
-        alang: ApgUts_TLanguage
+        alang: ApgUts_TLanguage,
+        aparams?: string[]
     ) {
     
         let r = aitem[alang];
         if (r == undefined) {
-            r = `[${alang}] ` + aitem['IT'];
+            r = `[${alang}] ` + aitem['EN'];
+        }
+
+        if (aparams) {
+
+            for (let i = 1; i <= aparams.length; i++) {  
+                r = r.replaceAll(`[%${i}]`, aparams[i-1]);
+            }
         }
     
         return r;

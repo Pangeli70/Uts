@@ -11,30 +11,39 @@
 export class ApgUts_DateTimeStamp {
 
     private readonly _stamp: string;
+    private readonly _date: Date;
 
-    constructor(aparam: Date) {
-        if (typeof aparam == 'string') {
-            this._stamp = aparam;
+
+
+    constructor(aparam?: Date) {
+
+        if (!aparam) {
+            aparam = new Date();
         }
-        else {
-            this._stamp = this.#value(aparam)
-        }
+        this._date = aparam;
+        this._stamp = this.#value(aparam);
+
     }
+
+
 
     #value(adate: Date) {
-        return adate.getFullYear() + '-' +
-            (adate.getMonth() + 1).toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
-            adate.getDate().toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
-            adate.getHours().toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
-            adate.getMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
-            adate.getSeconds().toLocaleString(undefined, { minimumIntegerDigits: 2 });
+        return adate.getUTCFullYear() + '-' +
+            (adate.getUTCMonth() + 1).toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
+            adate.getUTCDate().toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
+            adate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
+            adate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
+            adate.getUTCSeconds().toLocaleString(undefined, { minimumIntegerDigits: 2 }) + '-' +
+            adate.getUTCMilliseconds().toLocaleString(undefined, { minimumIntegerDigits: 3 });
     }
 
+
+
     get Date() {
-        const splits = this._stamp.split('-');
-        const str = `${splits[0]}-${splits[1]}-${splits[2]}T${splits[3]}:${splits[4]}:${splits[5]}`;
-        return new Date(str);
+        return this._date;
     }
+
+
 
     get Stamp() {
         return this._stamp;

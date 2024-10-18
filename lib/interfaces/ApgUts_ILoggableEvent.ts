@@ -3,19 +3,20 @@
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20240704
  * @version 0.2 APG 20240728 English comments
+ * @version 0.3 APG 20240826 Renamed
  * ----------------------------------------------------------------------------
  */
 
 import {
-    ApgUts_eLogType
-} from "../enums/ApgUts_eLogType.ts";
+    ApgUts_eEventType
+} from "../enums/ApgUts_eEventType.ts";
 
 
 
 /**
  * Definitions of a loggable event. It can be used for debugging and telemetry
  */
-export interface ApgUts_ILogEvent {
+export interface ApgUts_ILoggableEvent {
 
     /**
      * Date and time of the event creation
@@ -30,11 +31,11 @@ export interface ApgUts_ILogEvent {
     /**
      * Type of the event
      */
-    type: ApgUts_eLogType;
+    type: ApgUts_eEventType;
 
     /** 
-     * Name of the file in which the event was logged.
-     * Usually is extracted using the import.meta.url
+     * Name of the class or file in which the event was logged.
+     * It can be extracted extracted using the import.meta.url
      */
     module: string;
 

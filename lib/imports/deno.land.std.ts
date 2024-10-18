@@ -9,4 +9,5 @@
 // Deno std
 export * as Fs from "https://deno.land/std@0.224.0/fs/mod.ts";
 export * as Path from "https://deno.land/std@0.224.0/path/mod.ts";
+export * as Colors from "https://deno.land/std@0.224.0/fmt/colors.ts";
 export type { Cookie } from "https://deno.land/std@0.224.0/http/cookie.ts";
