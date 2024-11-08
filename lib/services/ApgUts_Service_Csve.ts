@@ -2,6 +2,7 @@
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20240728 Extraction to its own class
+ * @version 0.2 APG 20241107 Use PanicIf
  * ----------------------------------------------------------------------------
  */
 
@@ -11,6 +12,9 @@ import {
 import {
     ApgUts
 } from "../statics/ApgUts.ts";
+import {
+    ApgUts_Is
+} from "../statics/ApgUts_Is.ts";
 
 
 /**
@@ -70,10 +74,10 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
                     row += aseparator;
                 }
                 const val = (<any>item)[key];
-                if (ApgUts.IsDate(val)) {
+                if (ApgUts_Is.IsDate(val)) {
                     row += val.getDate() + "/" + (val.getMonth() + 1) + "/" + val.getFullYear()
                 }
-                else if (ApgUts.IsNumber(val)) {
+                else if (ApgUts_Is.IsNumber(val)) {
                     const stamp = parseFloat(val).toString().replaceAll(".", ",");
                     row += stamp;
                 }
@@ -164,7 +168,7 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
             discardLastColumn = true;
         }
 
-        ApgUts.Assert(
+        ApgUts.PanicIf(
             fieldTypes.length == fieldNames.length,
             ` ${messageTitle} / The number of types [${fieldTypes.length}] in the second row of file [${afile}] is different from the expected number of columns [${fieldNames.length}]`
         );
@@ -174,14 +178,14 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
 
         if (atranscodification != null) {
 
-            ApgUts.Assert(
+            ApgUts.PanicIf(
                 typeof (atranscodification) == "object",
                 ` ${messageTitle} / The argument passed for the transcodification is not an object`
             );
 
             const transcodificationFields = Object.keys(atranscodification).length;
 
-            ApgUts.Assert(
+            ApgUts.PanicIf(
                 transcodificationFields == numFields,
                 ` ${messageTitle} / The number of fields for the transcodification [${transcodificationFields}] is different from the expected number of columns [${fieldNames.length}]`
             );
@@ -193,7 +197,7 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
                     fieldNames[i] = property;
                 }
                 else {
-                    ApgUts.Assert(
+                    ApgUts.PanicIf(
                         property != undefined,
                         `${messageTitle} / The field [${name}] in the file [${afile}] does not exist in the transcodification object ${JSON.stringify(atranscodification)}`
                     )
@@ -203,7 +207,7 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
 
         for (let i = 2; i < table.length; i++) {
 
-            ApgUts.Assert(
+            ApgUts.PanicIf(
                 table[i].length == fieldNames.length,
                 ` ${messageTitle} / Error in the row [${i}] [${table[i][0]}] of the file [${afile}]: The number of columns [${table[i].length}] is different from the expected number of columns [${fieldNames.length})`
             );
@@ -245,7 +249,7 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
                         break;
                     }
                     default:
-                        ApgUts.Assert(
+                        ApgUts.PanicIf(
                             false,
                             `${messageTitle} / The type of the comumn in the row [${j}]/[${fieldTypes[j]}] of file [${afile}] is not valid. The recognized types are: "string", "number", "integer" e "boolean"`
                         )

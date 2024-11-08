@@ -1,7 +1,8 @@
 /** -----------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20220918 
+ * @version 0.1 APG 20220918
+ * @version 0.2 APG 20241107 Het Now
  * -----------------------------------------------------------------------
  */
 
@@ -47,5 +48,11 @@ export class ApgUts_DateTimeStamp {
 
     get Stamp() {
         return this._stamp;
+    }
+
+
+
+    static GetNow(asuffix?: number) {
+        return new ApgUts_DateTimeStamp().Stamp + (asuffix ? "-" + asuffix.toString() : '');
     }
 }

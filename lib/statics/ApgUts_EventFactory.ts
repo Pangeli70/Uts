@@ -3,6 +3,7 @@
  * @author [APG] Angeli Paolo Giusto
  * @version 0.1 APG 20240707 Extracted from ApgEdr_Service
  * @version 0.2 APG 20240826 Renamed and  Removed import meta url for module name
+ * @version 0.3 APG 20241107 From function to function.name
  * ----------------------------------------------------------------------------
  */
 
@@ -24,8 +25,7 @@ export class ApgUts_EventFactory {
     static New(
         atype: ApgUts_eEventType,
         aclassName: string,
-        // deno-lint-ignore ban-types
-        afunction: Function,
+        afunction: string,
         amessage: string
     ) {
 
@@ -35,7 +35,7 @@ export class ApgUts_EventFactory {
             time: performance.now(),
             type: atype,
             module: aclassName,
-            function: afunction,
+            method: afunction,
             message: amessage
         }
 
@@ -45,8 +45,7 @@ export class ApgUts_EventFactory {
 
     static Info(
         aclassName: string,
-        // deno-lint-ignore ban-types
-        afunction: Function,
+        afunction: string,
         amessage: string
     ) {
         return this.New(ApgUts_eEventType.INFO, aclassName, afunction, amessage);
@@ -55,8 +54,7 @@ export class ApgUts_EventFactory {
 
     static Error(
         aclassName: string,
-        // deno-lint-ignore ban-types
-        afunction: Function,
+        afunction: string,
         amessage: string
     ) {
         return this.New(ApgUts_eEventType.ERROR, aclassName, afunction, amessage);
@@ -65,8 +63,7 @@ export class ApgUts_EventFactory {
 
     static Debug(
         aclassName: string,
-        // deno-lint-ignore ban-types
-        afunction: Function,
+        afunction: string,
         amessage: string
     ) {
         return this.New(ApgUts_eEventType.DEBUG, aclassName, afunction, amessage);

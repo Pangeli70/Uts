@@ -1,15 +1,16 @@
 /** -----------------------------------------------------------------------
- * @module [apg-uts]
+ * @module [ApgUts]
  * @author [APG] ANGELI Paolo Giusto
- * @version 0.2.0 [APG 2018/06/02]
- * @version 0.5.0 [APG 2018/11/25]
- * @version 0.7.1 [APG 2019/08/27]
- * @version 0.8.0 [APG 2022/03/12] Porting to Deno
- * @version 0.8.1 [APG 2022/05/01] Refactoring names
- * @version 0.9.0 [APG 2022/09/10] Split in several module + Escape Html
- * @version 0.9.1 [APG 2022/09/11] Github Beta
- * @version 0.9.7 [APG 2023/05/06] Separation of concerns lib/src + Is Deploy
- * @version 1.0.0 [APG 2024/09/21] Deno 2
+ * @version 0.2.0 [APG 20180602]
+ * @version 0.5.0 [APG 20181125]
+ * @version 0.7.1 [APG 20190827]
+ * @version 0.8.0 [APG 20220312] Porting to Deno
+ * @version 0.8.1 [APG 20220501] Refactoring names
+ * @version 0.9.0 [APG 20220910] Split in several module + Escape Html
+ * @version 0.9.1 [APG 20220911] Github Beta
+ * @version 0.9.7 [APG 20230506] Separation of concerns libsrc + Is Deploy
+ * @version 1.0.0 [APG 20240921] Deno 2
+ * @version 1.1.0 [APG 20241107] Moved here IsDate
  * -----------------------------------------------------------------------
  */
 
@@ -19,7 +20,7 @@
  */
 export class ApgUts_Is {
 
-    
+
     static IsNumber(an: any): boolean {
         return (!isNaN(parseFloat(an)) && isFinite(an));
     }
@@ -93,6 +94,17 @@ export class ApgUts_Is {
 
     static IsDeploy() {
         return Deno.env.get('DENO_DEPLOYMENT_ID') != undefined;
+    }
+
+
+    
+    /**
+     * Check if the supplied parameter is a Date
+     */
+    // deno-lint-ignore no-explicit-any
+    static IsDate(avalue: any) {
+        const r = (avalue && avalue.getMonth && typeof avalue.getMonth == "function");
+        return r == true;
     }
 
 

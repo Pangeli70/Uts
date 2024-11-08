@@ -5,6 +5,7 @@
  * @version 0.2 APG 20240225 Refactored
  * @version 0.3 APG 20240402 Removed symbol from signature type
  * @version 0.4 APG 20240814 Introduced template type for payload signature
+ * @version 1.0 APG 20241107 Deno V2
  * ----------------------------------------------------------------------------
  */
 
@@ -45,15 +46,18 @@ export class ApgUts_Result<T> {
     /**
      * Adds a payload to the result
      * @param apayload It is expected to be of the type used to create the object in the constructor
-     * @param asignature 
+     * @param asignature Optional signature of the payload
      */
     setPayload(
         apayload: T,
-        asignature: string
+        asignature?: string
     ) {
 
         this._payload = apayload;
-        this._signature = asignature;
+
+        if (asignature) {
+            this._signature = asignature;
+        }
 
     }
 
@@ -84,15 +88,17 @@ export class ApgUts_Result<T> {
      * Changes the state of the result to ok=false
      * @param amethod Where the error is occurred
      * @param amessage Message to be added
+     * @param amessages Array of previously generated messages to be concatenated before the current message.
      * @returns itself to chain operations
      */
     error(
         amethod: string,
-        amessage: string
+        amessage: string,
+        amessages?: string[]
     ) {
         this.ok = false;
-        this._messages.push(`${amethod}: ${amessage}`);
-        return this;
+
+        return this.message(amethod, amessage, amessages)
     }
 
 
@@ -103,6 +109,7 @@ export class ApgUts_Result<T> {
      * @param amessage Text of the message
      * @param amessages Array of previously generated messages to be concatenated before the current message.
      * This is useful to merge results.
+     * @returns itself to chain operations
      */
     message(
         amethod: string,
@@ -114,6 +121,8 @@ export class ApgUts_Result<T> {
             this._messages.push(...amessages);
         }
         this._messages.push(`${amethod}: ${amessage}`);
+
+        return this;
 
     }
 

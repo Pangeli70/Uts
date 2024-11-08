@@ -4,6 +4,7 @@
  * @version 0.1 APG 20240704
  * @version 0.2 APG 20240728 English comments
  * @version 0.3 APG 20240826 Renamed
+ * @version 0.4 APG 20241107 function to method renaming
  * ----------------------------------------------------------------------------
  */
 
@@ -24,7 +25,7 @@ export interface ApgUts_ILoggableEvent {
     created: Date;
 
     /**
-     * Time of the server when the event was created
+     * Time of the server when the event was created gathered using Performance.now()
      */
     time: number;
 
@@ -41,9 +42,8 @@ export interface ApgUts_ILoggableEvent {
 
     /**
      * Method or function in which the event was logged.
-     * From the function we can extract the name
      */
-    function: Function;
+    method: string;
 
     /** 
      * Message associated to the event

@@ -4,6 +4,7 @@
  * @version 0.1 APG 20220909 Alpha version
  * @version 0.2 APG 20230418 Extraction to its own module
  * @version 0.3 APG 20241008 ApgUts_Result
+ * @version 0.3 APG 20241107 Small payload refactoring
  * ----------------------------------------------------------------------------
  */
 
@@ -76,12 +77,10 @@ export class ApgUts_File {
     /**
      * Read safely a Json file managing the Exceptions
      * @param afile full path + file name + extension
-     * @param asignature signature of the payload
      * @returns a result with the json object in the payload
      */
     static async ReadJsonFile<T>(
         afile: string,
-        asignature = 'unknown'
     ) {
 
         const r = new ApgUts_Result<T>();
@@ -89,7 +88,7 @@ export class ApgUts_File {
         try {
             const text = await Deno.readTextFile(afile);
             const json = JSON.parse(text) as T;
-            r.setPayload(json, asignature)
+            r.setPayload(json)
         }
         catch (error) {
             const m = `Error ${error.message} reading json from file ${afile}`;

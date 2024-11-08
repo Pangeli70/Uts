@@ -4,11 +4,12 @@
  * @version 0.1 APG 20220909 Alpha version
  * @version 0.2 APG 20230418 Extraction to its own module
  * @version 1.0 APG 20240814 IsDenoDeploy
+ * @version 1.1 APG 20241107 Moved some is... methods and renamed assert to panicIf, new virtual abstract method catcher
  * ----------------------------------------------------------------------------
  */
 
 /**
- * Breda Deno Typescript utilities
+ *  Deno Typescript utilities
  */
 export class ApgUts {
 
@@ -111,41 +112,6 @@ export class ApgUts {
 
 
 
-
-
-
-
-    /**
-     * Check if the supplied parameter is a Date
-     */
-    // deno-lint-ignore no-explicit-any
-    static IsDate(avalue: any) {
-        const r = (avalue && avalue.getMonth && typeof avalue.getMonth == "function");
-        return r == true;
-    }
-
-
-
-    /**
-     * Check if the supplied parameter is a number
-     */
-    // deno-lint-ignore no-explicit-any
-    static IsNumber(avalue: any) {
-        const r = (avalue && typeof avalue === 'number' && isFinite(avalue));
-        return r == true;
-    }
-
-
-
-    /**
-     * Check if the environment is Deno deploy
-     */
-    static IsDenoDeploy() {
-        return Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
-    }
-
-
-
     /** 
      * Converts a string to a boolean considering potential truthiness for the following cases:
      * astring != undefined &&
@@ -168,23 +134,43 @@ export class ApgUts {
     }
 
 
+
     /**
-     * Something wrong is going on, so brake volountarily the program and give 
+     * Something really wrong is going on, so we break volountarily the program and give 
      * an alert message
      * 
-     * @param amustBeTrueCondition Must be true
+     * @param aisFalse boolean value
      * @param amessage If the condition is false
      */
-    static Assert(
-        amustBeTrueCondition: boolean,
+    static PanicIf(
+        aisFalse: boolean,
         amessage: string
     ) {
-        const message = "ASSERTION! " + amessage
-        if (!amustBeTrueCondition) {
+        const message = "PANIC! " + amessage
+        if (aisFalse) {
             alert(message);
             console.log(message);
-            throw new Error(message);
+            Deno.exit(1);
         }
+    }
+
+
+
+    /**
+     * Use this method to break the program if the current method has to be overridden
+     * by a derived class
+     * 
+     * @param amethod Method that has to be overridden
+     */
+    static CalledVirtualAbstractSoExit(
+        aclass: string,
+        amethod: string,
+    ) {
+        const message = `THIS IS A VIRTUAL ABSTRACT METHOD! If you want to call [${aclass}.${amethod}] method you must override the implementation.`
+        alert(message);
+        console.log(message);
+        Deno.exit(1);
+
     }
 
 
@@ -198,7 +184,7 @@ export class ApgUts {
     }
 
 
-    
+
     /**
      * Get some Deno memory usage statistics
      */
