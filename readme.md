@@ -1,10 +1,11 @@
 # Apg Uts
 
 
-## Utillities
+## Utillities by Apg
 
 
-Libreria di oggetti, tipi e funzioni generiche e condivise.
+Shared classes, types and functions
 
 
-Viene utilizzata da tutti i modouli dell'ecosistema di servizi Apg.
+
+Used by all the other modules is Apg ecosystem
