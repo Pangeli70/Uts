@@ -5,9 +5,7 @@
  * ----------------------------------------------------------------------------
  */
 
-import {
-    ApgUts_IMultilanguage
-} from "../interfaces/ApgUts_IMultilanguage.ts";
+import {ApgUts_IMultilanguage} from "../interfaces/ApgUts_IMultilanguage.ts";
 
 
 export type ApgUts_TTranslations = Record<string, ApgUts_IMultilanguage>

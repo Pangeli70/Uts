@@ -8,12 +8,8 @@
  * ----------------------------------------------------------------------------
  */
 
-import {
-    Fs, Path
-} from "../imports/deno.land.std.ts";
-import {
-    ApgUts_Result
-} from "../mod.ts";
+import {Fs, Path} from "../imports/deno.land.std.ts";
+import {ApgUts_Result} from "../mod.ts";
 
 
 

@@ -8,21 +8,11 @@
  * ----------------------------------------------------------------------------
  */
 
-import {
-    ApgUts_Result
-} from "../classes/ApgUts_Result.ts";
-import {
-    ApgUts_eEventType
-} from "../enums/ApgUts_eEventType.ts";
-import {
-    ApgUts_ILoggableEvent
-} from "../interfaces/ApgUts_ILoggableEvent.ts";
-import {
-    ApgUts
-} from "../statics/ApgUts.ts";
-import {
-    ApgUts_EventFactory
-} from "../statics/ApgUts_EventFactory.ts";
+import {ApgUts_Result} from "../classes/ApgUts_Result.ts";
+import {ApgUts_eEventType} from "../enums/ApgUts_eEventType.ts";
+import {ApgUts_ILoggableEvent} from "../interfaces/ApgUts_ILoggableEvent.ts";
+import {ApgUts} from "../statics/ApgUts.ts";
+import {ApgUts_EventFactory} from "../statics/ApgUts_EventFactory.ts";
 
 
 

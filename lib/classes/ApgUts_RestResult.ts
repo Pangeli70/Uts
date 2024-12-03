@@ -7,9 +7,7 @@
  * ----------------------------------------------------------------------------
  */
 
-import {
-    ApgUts_IRestPayload
-} from "../interfaces/ApgUts_IRestPayload.ts";
+import {ApgUts_IRestPayload} from "../interfaces/ApgUts_IRestPayload.ts";
 
 
 

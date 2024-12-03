@@ -7,12 +7,8 @@
  * ----------------------------------------------------------------------------
  */
 
-import {
-    ApgUts_eEventType
-} from "../enums/ApgUts_eEventType.ts";
-import {
-    ApgUts_ILoggableEvent
-} from "../interfaces/ApgUts_ILoggableEvent.ts";
+import {ApgUts_eEventType} from "../enums/ApgUts_eEventType.ts";
+import {ApgUts_ILoggableEvent} from "../interfaces/ApgUts_ILoggableEvent.ts";
 
 
 

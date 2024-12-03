@@ -6,12 +6,8 @@
  * ----------------------------------------------------------------------------
  */
 
-import {
-    ApgUts_IMultilanguage
-} from "../interfaces/ApgUts_IMultilanguage.ts";
-import {
-    ApgUts_TLanguage
-} from "../types/ApgUts_TLanguage.ts";
+import {ApgUts_IMultilanguage} from "../interfaces/ApgUts_IMultilanguage.ts";
+import {ApgUts_TLanguage} from "../types/ApgUts_TLanguage.ts";
 
 
 /**

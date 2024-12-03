@@ -6,15 +6,9 @@
  * ----------------------------------------------------------------------------
  */
 
-import {
-    ApgUts_Service
-} from "./ApgUts_Service.ts";
-import {
-    ApgUts
-} from "../statics/ApgUts.ts";
-import {
-    ApgUts_Is
-} from "../statics/ApgUts_Is.ts";
+import {ApgUts_Service} from "./ApgUts_Service.ts";
+import {ApgUts} from "../statics/ApgUts.ts";
+import {ApgUts_Is} from "../statics/ApgUts_Is.ts";
 
 
 /**
