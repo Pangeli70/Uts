@@ -1,11 +1,12 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20220909 Alpha version
- * @version 0.2 APG 20230418
- * @version 0.3 APG 20231223
- * @version 0.4 APG 20240728 English comments
- * @version 1.0 APG 20240814 Version + IsDenoDeploy
+ * @version 0.9.1 [APG 2022/09/09] Alpha version
+ * @version 0.9.2 [APG 2023/04/18]
+ * @version 0.9.3 [APG 2023/12/23]
+ * @version 0.9.4 [APG 2024/07/28] English comments
+ * @version 0.9.5 [APG 2024/08/14] Version + IsDenoDeploy
+ * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * ----------------------------------------------------------------------------
  */
 
@@ -23,7 +24,7 @@ export interface ApgUts_IMicroservice {
     /**
      * Version of the microservice
      */
-    version: string; // @1.0
+    version: string; 
     
     /**
      * Description of the microservice
@@ -33,7 +34,7 @@ export interface ApgUts_IMicroservice {
     /**
      * Is Deno Deploy
      */
-    isDeploy: boolean; // @1.0
+    isDeploy: boolean; 
     
     /**
      * IP address of the development server

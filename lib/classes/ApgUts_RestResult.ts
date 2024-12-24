@@ -1,19 +1,20 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20231206 
- * @version 0.2 APG 20240103 Moved to Uts
- * @version 0.3 APG 20240728 English comments
+ * @version 0.9.1 [APG 2023/12/06] 
+ * @version 0.9.2 [APG 2024/01/03] Moved to Uts
+ * @version 0.9.3 [APG 2024/07/28] English comments
+ * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * ----------------------------------------------------------------------------
  */
 
-import {ApgUts_IRestPayload} from "../interfaces/ApgUts_IRestPayload.ts";
+import { ApgUts_IRestPayload } from "../interfaces/ApgUts_IRestPayload.ts";
 
 
 
 
 /**
- * Result of a calla to a REST microservice
+ * Result of a call to a REST microservice
  */
 export class ApgUts_RestResult {
 

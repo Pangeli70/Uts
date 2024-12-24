@@ -1,10 +1,12 @@
 /** -----------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20220918
- * @version 0.2 APG 20241107 Het Now
+ * @version 0.9.1 [APG 2022/09/18]
+ * @version 0.9.2 [APG 2024/11/07] GetNow
+ * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * -----------------------------------------------------------------------
  */
+
 
 /**
  * Custom Apg date time stamps. These are meant to be used as immutable identifiers 

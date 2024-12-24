@@ -1,11 +1,11 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20230418
- * @version 0.2 APG 20240225 Refactored
- * @version 0.3 APG 20240402 Removed symbol from signature type
- * @version 0.4 APG 20240814 Introduced template type for payload signature
- * @version 1.0 APG 20241107 Deno V2
+ * @version 0.9.1 [APG 2023/04/18]
+ * @version 0.9.2 [APG 2024/02/25] Refactored
+ * @version 0.9.3 [APG 2024/04/02] Removed symbol from signature type
+ * @version 0.9.4 [APG 2024/08/14] Introduced template type for payload signature
+ * @version 1.0.0 [APG 2024/11/07] Movoing to Deno V2
  * ----------------------------------------------------------------------------
  */
 

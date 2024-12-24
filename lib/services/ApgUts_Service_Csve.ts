@@ -1,14 +1,15 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20240728 Extraction to its own class
- * @version 0.2 APG 20241107 Use PanicIf
+ * @version 0.9.1 [APG 2024/07/28] Extraction to its own class
+ * @version 0.9.2 [APG 2024/11/07] Use PanicIf
+ * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * ----------------------------------------------------------------------------
  */
 
-import {ApgUts_Service} from "./ApgUts_Service.ts";
-import {ApgUts} from "../statics/ApgUts.ts";
-import {ApgUts_Is} from "../statics/ApgUts_Is.ts";
+import { ApgUts } from "../statics/ApgUts.ts";
+import { ApgUts_Is } from "../statics/ApgUts_Is.ts";
+import { ApgUts_Service } from "./ApgUts_Service.ts";
 
 
 /**
@@ -22,6 +23,9 @@ import {ApgUts_Is} from "../statics/ApgUts_Is.ts";
  * The other rows are expected to contain the values of the properties of the object in the row.
  * 
  * Comment rows are allowed if the first value is prefixed with the "//" prefix
+ * 
+ * If something wrong happens reading the file the PanicIf will break the program
+ * 
  */
 export class ApgUts_Service_Csve extends ApgUts_Service {
 

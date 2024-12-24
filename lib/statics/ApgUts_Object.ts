@@ -8,13 +8,13 @@
  * @version 0.8.1 [APG 2022/05/01] Refactoring names
  * @version 0.9.0 [APG 2022/09/10] Split in several module + Escape Html
  * @version 0.9.1 [APG 2022/09/11] Github Beta
- * @version 0.1 APG 20240921 Integration in Deno 2
+ * @version 1.0.0 [APG 2024/09/21] Moving to Deno 2
  * -----------------------------------------------------------------------
  */
 import { ApgUts_Math } from "./ApgUts_Math.ts";
 
 /**
- * Utility functions to deal with objects
+ * Static utility functions to deal with objects
  */
 export class ApgUts_Object {
 

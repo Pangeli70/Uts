@@ -1,13 +1,14 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20240728 Extraction to its own class
+ * @version 0.9.1 [APG 2024/07/28] Extraction to its own class
+ * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * ----------------------------------------------------------------------------
  */
 
 
 /**
- * Utility class for enumerations
+ * Static functions for dealing with enumerations
  */
 export class ApgUts_Enum { 
 

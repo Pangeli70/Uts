@@ -1,9 +1,8 @@
 /** ---------------------------------------------------------------------------
- * @module [ApgUts]  Breda Deno Typescript utilities for Deno
- * @author APG
- * @version 0.1 APG 20220909 Alpha version
- * @version 0.2 APG 20230418 Extraction to its own module
- * @version 0.3 APG 20231229 Aggiunto l'oggetto logger
+ * @module [ApgUts]  
+ * @author [APG] Angeli Paolo Giusto
+ * @description Typescript utilities for Deno
+ * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * ----------------------------------------------------------------------------
  */
 

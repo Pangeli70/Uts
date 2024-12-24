@@ -9,7 +9,7 @@
  * @version 0.9.0 [APG 20220910] Split in several module + Escape Html
  * @version 0.9.1 [APG 20220911] Github Beta
  * @version 0.9.7 [APG 20230506] Separation of concerns libsrc + Is Deploy
- * @version 1.0.0 [APG 20240921] Deno 2
+ * @version 1.0.0 [APG 20240921] Moving to Deno 2
  * @version 1.1.0 [APG 20241107] Moved here IsDate
  * @version 1.1.1 [APG 20241117] Is Email
  * -----------------------------------------------------------------------
@@ -17,7 +17,7 @@
 
 
 /**
- * Utility functions to check if some conditions are met
+ * Static utility functions to check if some conditions are met
  */
 export class ApgUts_Is {
 

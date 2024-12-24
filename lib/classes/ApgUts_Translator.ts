@@ -1,13 +1,14 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20240103
- * @version 0.2 APG 20240728 English comments
+ * @version 0.9.1 [APG 2024/01/03]
+ * @version 0.9.2 [APG 2024/07/28] English comments
+ * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * ----------------------------------------------------------------------------
  */
 
-import {ApgUts_IMultilanguage} from "../interfaces/ApgUts_IMultilanguage.ts";
-import {ApgUts_TLanguage} from "../types/ApgUts_TLanguage.ts";
+import { ApgUts_IMultilanguage } from "../interfaces/ApgUts_IMultilanguage.ts";
+import { ApgUts_TLanguage } from "../types/ApgUts_TLanguage.ts";
 
 
 /**

@@ -1,20 +1,21 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
  * @author [APG] Angeli Paolo Giusto
- * @version 0.1 APG 20220909 Alpha version
- * @version 0.2 APG 20230418 Extraction to its own module
- * @version 0.3 APG 20241008 ApgUts_Result
- * @version 0.3 APG 20241107 Small payload refactoring
+ * @version 0.9.1 [APG 2022/09/09] Alpha version
+ * @version 0.9.2 [APG 2023/04/18] Extraction to its own module
+ * @version 0.9.3 [APG 2024/10/08] ApgUts_Result
+ * @version 0.9.4 [APG 2024/11/07] Small payload refactoring
+ * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * ----------------------------------------------------------------------------
  */
 
-import {Fs, Path} from "../imports/deno.land.std.ts";
-import {ApgUts_Result} from "../mod.ts";
+import { Fs, Path } from "../imports/deno.land.std.ts";
+import { ApgUts_Result } from "../mod.ts";
 
 
 
 /**
- * Text file utilities
+ * Static Text file utilities. Not very useful On Deno Deploy
  */
 export class ApgUts_File {
 
