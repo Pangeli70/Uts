@@ -136,21 +136,34 @@ export class ApgUts {
 
 
     /**
+     * Check if we are running in Deno
+     */
+    static inDeno() {
+        return (Deno !== undefined && Deno.version !== undefined);
+    }
+
+
+    
+    /**
      * Something really wrong is going on, so we break volountarily the program and give 
      * an alert message
      * 
-     * @param aisFalse boolean value
-     * @param amessage If the condition is false
+     * @param acondition boolean value
+     * @param amessage If the condition is met
      */
     static PanicIf(
-        aisFalse: boolean,
+        acondition: boolean,
         amessage: string
     ) {
-        const message = "PANIC! " + amessage
-        if (aisFalse) {
-            alert(message);
-            console.log(message);
-            Deno.exit(1);
+        if (acondition) {
+            const message = "PANIC! " + amessage
+            if (this.inDeno()) {
+                alert(message);
+                Deno.exit(1);
+            }
+            else {
+                throw new Error(message);
+            }
         }
     }
 
@@ -167,9 +180,13 @@ export class ApgUts {
         amethod: string,
     ) {
         const message = `THIS IS A VIRTUAL ABSTRACT METHOD! If you want to call [${aclass}.${amethod}] method you must override the implementation.`
-        alert(message);
-        console.log(message);
-        Deno.exit(1);
+        if (this.inDeno()) {
+            alert(message);
+            Deno.exit(1);
+        }
+        else {
+            throw new Error(message);
+         }
 
     }
 

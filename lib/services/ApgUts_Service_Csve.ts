@@ -167,7 +167,7 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
         }
 
         ApgUts.PanicIf(
-            fieldTypes.length == fieldNames.length,
+            fieldTypes.length != fieldNames.length,
             ` ${messageTitle} / The number of types [${fieldTypes.length}] in the second row of file [${afile}] is different from the expected number of columns [${fieldNames.length}]`
         );
 
@@ -177,14 +177,14 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
         if (atranscodification != null) {
 
             ApgUts.PanicIf(
-                typeof (atranscodification) == "object",
+                typeof (atranscodification) != "object",
                 ` ${messageTitle} / The argument passed for the transcodification is not an object`
             );
 
             const transcodificationFields = Object.keys(atranscodification).length;
 
             ApgUts.PanicIf(
-                transcodificationFields == numFields,
+                transcodificationFields != numFields,
                 ` ${messageTitle} / The number of fields for the transcodification [${transcodificationFields}] is different from the expected number of columns [${fieldNames.length}]`
             );
 
@@ -206,7 +206,7 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
         for (let i = 2; i < table.length; i++) {
 
             ApgUts.PanicIf(
-                table[i].length == fieldNames.length,
+                table[i].length != fieldNames.length,
                 ` ${messageTitle} / Error in the row [${i}] [${table[i][0]}] of the file [${afile}]: The number of columns [${table[i].length}] is different from the expected number of columns [${fieldNames.length})`
             );
 
@@ -248,7 +248,7 @@ export class ApgUts_Service_Csve extends ApgUts_Service {
                     }
                     default:
                         ApgUts.PanicIf(
-                            false,
+                            true,
                             `${messageTitle} / The type of the comumn in the row [${j}]/[${fieldTypes[j]}] of file [${afile}] is not valid. The recognized types are: "string", "number", "integer" e "boolean"`
                         )
                 }
