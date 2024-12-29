@@ -1,6 +1,6 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
- * @author [APG] Angeli Paolo Giusto
+ * @author [APG] ANGELI Paolo Giusto
  * @version 0.9.1 [APG 2024/07/28] Extraction to its own class
  * @version 0.9.2 [APG 2024/08/26] Renaming fields
  * @version 0.9.3 [APG 2024/09/21] loggable events

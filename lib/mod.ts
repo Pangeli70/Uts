@@ -1,6 +1,6 @@
 /** ---------------------------------------------------------------------------
  * @module [ApgUts]
- * @author [APG] Angeli Paolo Giusto
+ * @author [APG] ANGELI Paolo Giusto
  * @description Utility entities for Deno development
  * @version 1.0.0 [APG 2024/12/24] Moving to Deno 2
  * ----------------------------------------------------------------------------
