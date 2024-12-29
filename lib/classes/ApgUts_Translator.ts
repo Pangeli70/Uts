@@ -28,19 +28,39 @@ export class ApgUts_Translator {
 
 
 
+    /**
+     * Get the multilanguage item if found in the dictionary or null
+     */
+    item(aitem: string) { 
+
+        const item = this._dictionary[aitem];
+        
+        if (item == undefined) return null;
+
+        return item;
+
+    }
+
+
+
+    /**
+     * Get the translation of the multilanguage item if found in the dictionary.
+     * The method supports placeholderes for additional parameters in the format 
+     * [%n] where n is a number starting from 1
+     */
     get(
         aitem: string,
         alang: ApgUts_TLanguage,
         aparams?: string[]
     ) {
-        const m = this._dictionary[aitem];
-        if (m == undefined) {
+        const item = this._dictionary[aitem];
+        if (item == undefined) {
             return `Error translation for [${aitem}] not found`;
         }
 
-        let r = m[alang];
+        let r = item[alang];
         if (r == undefined) {
-            r = `[${alang}] ` + m['IT'];
+            r = `[${alang}] ` + item['EN'];
         }
 
         if (aparams) {
@@ -55,6 +75,11 @@ export class ApgUts_Translator {
 
 
 
+    /**
+     * Returns the translation of the entire dictionary in the specified language
+     * This method is not compatible with additional parameters. Parameter interpolations
+     * must be done afterwards.
+     */
     getAll(
         alangId: ApgUts_TLanguage
     ) {
@@ -70,6 +95,12 @@ export class ApgUts_Translator {
 
 
 
+
+    /**
+     * Get the translation of the passed multilanguage item.
+     * The method supports placeholderes for additional parameters in the format 
+     * [%n] where n is a number starting from 1
+     */
     static Translate(
         aitem: ApgUts_IMultilanguage,
         alang: ApgUts_TLanguage,
