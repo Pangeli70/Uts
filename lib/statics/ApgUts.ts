@@ -4,7 +4,8 @@
  * @version 0.9.1 [APG 2022/09/09] Alpha version
  * @version 0.9.2 [APG 2023/04/18] Extraction to its own module
  * @version 1.0.0 [APG 2024/08/14] IsDenoDeploy
- * @version 1.1.0 [APG 2024/11/07] Moved some is... methods and renamed assert to panicIf, new virtual abstract method catcher
+ * @version 1.0.1 [APG 2024/11/07] Moved some is... methods and renamed assert to panicIf, new virtual abstract method catcher
+ * @version 1.0.2 [APG 2025/01/02] Debugging PanicIf
  * ----------------------------------------------------------------------------
  */
 
@@ -158,10 +159,11 @@ export class ApgUts {
         if (acondition) {
             const message = "PANIC! " + amessage
             if (this.inDeno()) {
-                alert(message);
+                console.log(message);
                 Deno.exit(1);
             }
             else {
+                alert(message);
                 throw new Error(message);
             }
         }
