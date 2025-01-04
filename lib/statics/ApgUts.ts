@@ -183,10 +183,11 @@ export class ApgUts {
     ) {
         const message = `THIS IS A VIRTUAL ABSTRACT METHOD! If you want to call [${aclass}.${amethod}] method you must override the implementation.`
         if (this.inDeno()) {
-            alert(message);
+            console.log(message);
             Deno.exit(1);
         }
         else {
+            alert(message);
             throw new Error(message);
          }
 
