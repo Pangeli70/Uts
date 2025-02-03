@@ -35,7 +35,7 @@ export interface ApgUts_ILoggableEvent {
 
     /** 
      * Name of the class or file in which the event was logged.
-     * It can be extracted extracted using the import.meta.url
+     * Use <Class>.name
      */
     module: string;
 

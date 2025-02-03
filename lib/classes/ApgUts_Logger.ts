@@ -11,8 +11,9 @@
 
 /**
  * Events recorder for debugging and telemetry
+ * Deprecated use ApgUts_ILoggableEvent instead
  */
-export class ApgUts_Logger {
+export class ApgUts_Logger_Deprecated {
 
 
     private _toConsole: boolean;

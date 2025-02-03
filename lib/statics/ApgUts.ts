@@ -144,13 +144,14 @@ export class ApgUts {
     }
 
 
-    
+
     /**
-     * Something really wrong is going on, so we break volountarily the program and give 
-     * an alert message
+     * Something really wrong is going on, so we break volountarily the program.
+     * In Deno we print the message and terminate the execution.
+     * In the browser we display an alert message and throw an error
      * 
-     * @param acondition boolean value
-     * @param amessage If the condition is met
+     * @param acondition if true breaks the program
+     * @param amessage Error message
      */
     static PanicIf(
         acondition: boolean,
@@ -175,6 +176,7 @@ export class ApgUts {
      * Use this method to break the program if the current method has to be overridden
      * by a derived class
      * 
+     * @param aclass Class that contains the method
      * @param amethod Method that has to be overridden
      */
     static CalledVirtualAbstractSoExit(
@@ -189,7 +191,7 @@ export class ApgUts {
         else {
             alert(message);
             throw new Error(message);
-         }
+        }
 
     }
 
