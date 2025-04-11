@@ -108,6 +108,8 @@ export class ApgUts_Is {
 
     static IsDeploy() {
 
+        if(Deno == undefined) return false;
+
         return Deno.env.get('DENO_DEPLOYMENT_ID') != undefined;
 
     }

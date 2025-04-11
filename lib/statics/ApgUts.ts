@@ -139,8 +139,10 @@ export class ApgUts {
     /**
      * Check if we are running in Deno
      */
-    static inDeno() {
+    static isDeno() {
+
         return (Deno !== undefined && Deno.version !== undefined);
+        
     }
 
 
@@ -159,7 +161,7 @@ export class ApgUts {
     ) {
         if (acondition) {
             const message = "PANIC! " + amessage
-            if (this.inDeno()) {
+            if (this.isDeno()) {
                 console.log(message);
                 Deno.exit(1);
             }
@@ -184,7 +186,7 @@ export class ApgUts {
         amethod: string,
     ) {
         const message = `THIS IS A VIRTUAL ABSTRACT METHOD! If you want to call [${aclass}.${amethod}] method you must override the implementation.`
-        if (this.inDeno()) {
+        if (this.isDeno()) {
             console.log(message);
             Deno.exit(1);
         }

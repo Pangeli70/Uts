@@ -87,8 +87,9 @@ export class ApgUts_File {
             const json = JSON.parse(text) as T;
             r.setPayload(json)
         }
-        catch (error) {
-            const m = `Error ${error.message} reading json from file ${afile}`;
+        catch (e) {
+            const err = e as Error;
+            const m = `Error ${err.message} reading json from file ${afile}`;
             r.error(this.ReadJsonFile.name, m);
         }
 

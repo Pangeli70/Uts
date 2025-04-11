@@ -9,7 +9,7 @@
 
 
 /**
- * Static functionst to implement a Bare minimal testing tool
+ * Static functions to implement a Bare minimal testing tool
  */
 export class ApgUts_Spec {
 
