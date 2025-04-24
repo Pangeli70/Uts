@@ -7,7 +7,7 @@
  */
 
 
-export * from "./mod_lib.ts";
+export * from "./mod_client.ts";
 
 
 

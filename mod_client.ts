@@ -6,4 +6,4 @@
  * ----------------------------------------------------------------------------
  */
 
-export * as Uts from "./lib/mod_lib.ts"
+export * as Uts from "./lib/mod_client.ts"

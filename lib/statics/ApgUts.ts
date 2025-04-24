@@ -141,7 +141,7 @@ export class ApgUts {
      */
     static isDeno() {
 
-        return (Deno !== undefined && Deno.version !== undefined);
+        return (typeof Deno !== 'undefined');
         
     }
 
