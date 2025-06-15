@@ -65,4 +65,16 @@ export class ApgUts_Enum {
     }
 
 
+    /**
+     * Gets an enum key name by its value
+     */
+    static KeyNameByKeyValue(
+        aenum: any,
+        avalue: keyof typeof aenum
+    ) {
+        const r = Object.keys(aenum).find(key => aenum[key as keyof typeof aenum] === avalue)!;
+
+        return r;
+    }
+
 }
